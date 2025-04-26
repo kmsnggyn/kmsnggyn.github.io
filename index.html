@@ -92,23 +92,6 @@
       color: var(--link-color);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 8px 12px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    th {
-      background-color: #f2f2f2;
-      cursor: pointer;
-    }
-
     ul {
       padding-left: 20px;
       margin-top: 10px;
@@ -135,6 +118,21 @@
       border: 1px solid #ccc;
     }
 
+    .close-btn {
+      background-color: var(--link-color);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .close-btn:hover {
+      background-color: var(--hover-link-color);
+    }
+
     footer {
       margin-top: 80px;
       text-align: center;
@@ -145,63 +143,10 @@
     }
 
     @media (prefers-color-scheme: dark) {
-      th {
-        background-color: #222;
-      }
-      td, th {
-        border-bottom: 1px solid #555;
-      }
       nav {
         border-bottom: 1px solid #555;
       }
     }
-    
-    .details-row td {
-      background-color: #f9f9f9;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .details-row td {
-        background-color: #222;
-      }
-    }
-
-    .arrow {
-      display: inline-block;
-      width: 1em;
-      text-align: center;
-      margin-right: 5px;
-      transition: transform 0.2s ease;
-    }
-    
-    .rotated {
-      transform: rotate(90deg);
-    }
-
-    .clickable-project {
-      cursor: pointer;
-    }
-
-    .clickable-project:hover {
-      color: var(--link-color);
-      text-decoration: underline;
-    }
-	
-	.close-btn {
-	  background-color: var(--link-color);
-	  color: white;
-	  border: none;
-	  padding: 6px 12px;
-	  font-size: 0.9em;
-	  cursor: pointer;
-	  border-radius: 4px;
-	}
-
-	.close-btn:hover {
-	  background-color: var(--hover-link-color);
-	}
-
-
   </style>
 </head>
 
@@ -218,20 +163,19 @@
 
   <section id="profile">
     <h2>Profile</h2>
-    <p>Hello, I'm Seonggyun Kim, a master's student in Chemical Engineering for Energy and Environment at KTH, Stockholm. I am passionate about sustainable technologies, decarbonization, and integrating chemical engineering principles with environmental innovation.</p>
-    <p><a href="cv.pdf" target="_blank">Download my CV</a> or <a href="#" onclick="viewPDF('cv-seonggyun-kim.pdf', 'cv-viewer'); return false;">View CV here</a>.</p>
+    <div id="profile-content">
+      <!-- profile.html will be loaded here -->
+    </div>
 
-    <!-- CV-specific viewer -->
     <div id="cv-viewer" style="margin-top: 30px;"></div>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
     <div id="projects-content">
-      <!-- Project table will be loaded dynamically here -->
+      <!-- projects.html will be loaded here -->
     </div>
 
-    <!-- Project-specific viewer -->
     <div id="project-viewer" style="margin-top: 30px;"></div>
   </section>
 
@@ -243,7 +187,7 @@
       <li>Art</li>
     </ul>
 
-    <!-- Optional SoundCloud embedded player -->
+    <!-- Optional embedded SoundCloud track -->
     <!--
     <iframe width="100%" height="166" scrolling="no" frameborder="no"
       allow="autoplay"
@@ -256,7 +200,7 @@
   <section id="social">
     <h2>Social</h2>
     <ul>
-<!--      <li><a href="https://github.com/kmsnggyn" target="_blank">GitHub</a></li> -->
+      <li><a href="https://github.com/kmsnggyn" target="_blank">GitHub</a></li>
       <li><a href="https://linkedin.com/in/seonggyunkim" target="_blank">LinkedIn</a></li>
       <li><a href="mailto:seonggyun.kim@outlook.com">Email</a></li>
     </ul>
@@ -269,21 +213,45 @@
   <script>
     let projectsLoaded = false;
     let expandedRow = null;
+    let currentSort = { column: -1, ascending: true };
 
     window.addEventListener("DOMContentLoaded", function() {
-      const projectsContent = document.getElementById("projects-content");
+      // Fetch Profile
+      fetch('profile.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('profile-content').innerHTML = data;
+        })
+        .catch(error => {
+          console.error('Error loading profile:', error);
+        });
 
+      // Fetch Projects
       fetch('projects.html')
         .then(response => response.text())
         .then(data => {
-          projectsContent.innerHTML = data;
+          document.getElementById('projects-content').innerHTML = data;
           projectsLoaded = true;
         })
         .catch(error => {
-          projectsContent.innerHTML = "<p>Failed to load project files.</p>";
+          document.getElementById('projects-content').innerHTML = "<p>Failed to load project files.</p>";
           console.error('Error loading project files:', error);
         });
     });
+
+    function viewPDF(filePath, target) {
+      const viewer = document.getElementById(target);
+      viewer.innerHTML = `
+        <button onclick="closeViewer('${target}')" class="close-btn">Close</button>
+        <iframe src="${filePath}"></iframe>
+      `;
+      viewer.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function closeViewer(target) {
+      const viewer = document.getElementById(target);
+      viewer.innerHTML = "";
+    }
 
     function sortTable(columnIndex) {
       const table = document.getElementById("project-table");
@@ -314,23 +282,6 @@
       tbody.innerHTML = "";
       sortedRows.forEach(row => tbody.appendChild(row));
     }
-
-    let currentSort = { column: -1, ascending: true };
-
-	function viewPDF(filePath, target) {
-	  const viewer = document.getElementById(target);
-	  viewer.innerHTML = `
-		<button onclick="closeViewer('${target}')" class="close-btn">Close</button>
-		<iframe src="${filePath}"></iframe>
-	  `;
-	  viewer.scrollIntoView({ behavior: "smooth" });
-	}
-
-	function closeViewer(target) {
-	  const viewer = document.getElementById(target);
-	  viewer.innerHTML = "";
-	}
-
 
     function toggleDetails(row, pdfPath, fullTitle, institution, description) {
       const tbody = row.parentElement;
