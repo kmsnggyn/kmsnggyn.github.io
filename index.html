@@ -165,6 +165,16 @@
 		background-color: #222;
 	  }
 	}
+	.arrow {
+	  display: inline-block;
+	  width: 1em;
+	  text-align: center;
+	  margin-right: 5px;
+	  transition: transform 0.2s ease;
+	}
+	.rotated {
+	  transform: rotate(90deg);
+	}
 
   </style>
 </head>
@@ -292,24 +302,31 @@
 	
 	let expandedRow = null;
 
+	let expandedRow = null;
+
 	function toggleDetails(row, pdfPath, fullTitle, institution, description) {
 	  const tbody = row.parentElement;
-	  
-	  // Close previously expanded row
+
+	  // Close previous expanded row
 	  if (expandedRow && expandedRow !== row) {
 		if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
 		  tbody.removeChild(expandedRow.nextSibling);
+		  const oldArrow = expandedRow.querySelector(".arrow");
+		  if (oldArrow) oldArrow.classList.remove("rotated");
 		}
 	  }
+
+	  const arrow = row.querySelector(".arrow");
 
 	  // If clicking the same row again
 	  if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains('details-row')) {
 		tbody.removeChild(row.nextSibling);
+		if (arrow) arrow.classList.remove("rotated");
 		expandedRow = null;
 		return;
 	  }
 
-	  // Otherwise, expand
+	  // Otherwise expand
 	  const detailsRow = document.createElement('tr');
 	  detailsRow.classList.add('details-row');
 	  detailsRow.innerHTML = `
@@ -322,8 +339,10 @@
 	  `;
 	  tbody.insertBefore(detailsRow, row.nextSibling);
 
+	  if (arrow) arrow.classList.add("rotated");
 	  expandedRow = row;
 	}
+
 
   </script>
 
