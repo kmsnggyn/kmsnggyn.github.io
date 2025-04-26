@@ -17,11 +17,8 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <style>
-    /*-----------------------------*
-     *   Theme & Layout Variables  *
-     *-----------------------------*/
+    /* Theme colors */
     :root {
       --background: #ffffff;
       --text: #333333;
@@ -39,9 +36,7 @@
       }
     }
 
-    /*-----------------------------*
-     *    Global & Body Reset     *
-     *-----------------------------*/
+    /* Global reset */
     html { scroll-behavior: smooth; }
     body {
       font-family: "Inter", sans-serif;
@@ -53,9 +48,7 @@
       color: var(--text);
     }
 
-    /*-----------------------------*
-     *       Navigation Bar        *
-     *-----------------------------*/
+    /* Navbar */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       background: var(--background);
@@ -64,102 +57,94 @@
       z-index: 1000;
     }
     nav a {
-      color: var(--text); text-decoration: none;
-      font-weight: 600; font-size: 0.95em;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95em;
     }
     nav a:hover { color: var(--link); }
 
-    /*-----------------------------*
-     *        Section Titles       *
-     *-----------------------------*/
+    /* Sections */
     section { margin-top: 60px; }
     h1, h2 { text-align: center; font-weight: 600; }
     h1 { margin-bottom: 20px; font-size: 1.8em; }
     h2 {
-      margin-bottom: 30px; font-size: 1.4em;
+      margin-bottom: 30px;
+      font-size: 1.4em;
       color: var(--link);
     }
 
-    /*-----------------------------*
-     *        Link & Lists         *
-     *-----------------------------*/
+    /* Links & lists */
     a { color: var(--link); text-decoration: none; }
     a:hover { text-decoration: underline; color: var(--link-hover); }
     ul { padding-left: 20px; margin-top: 10px; }
     li { margin-bottom: 8px; }
 
-    /*-----------------------------*
-     *      Embedded Iframe        *
-     *-----------------------------*/
+    /* PDF viewer */
     iframe {
-      margin-top: 30px; width: 100%; height: 600px;
+      margin-top: 30px;
+      width: 100%;
+      height: 600px;
       border: 1px solid #ccc;
     }
-
-    /*-----------------------------*
-     *     PDF Viewer Button       *
-     *-----------------------------*/
     .close-btn {
-      background: var(--link); color: #fff; border: none;
-      padding: 6px 12px; font-size: 0.9em; cursor: pointer;
-      border-radius: 4px; margin-bottom: 10px;
+      background: var(--link);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-bottom: 10px;
     }
     .close-btn:hover { background: var(--link-hover); }
 
-    /*-----------------------------*
-     *      Project Table Styles   *
-     *-----------------------------*/
+    /* Project table */
     #project-table-wrapper { overflow-x: auto; }
     #project-table {
-      width: 100%; border-collapse: collapse; margin-top: 20px;
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
     }
-    #project-table th, #project-table td {
-      padding: 8px 12px; border-bottom: 1px solid #ccc;
+    #project-table th,
+    #project-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #ccc;
       text-align: left;
     }
     #project-table th {
-      background: #f2f2f2; cursor: pointer;
+      background: #f2f2f2;
+      cursor: pointer;
     }
-    /* Year column: no wrap, centered */
     .year-column {
-      white-space: nowrap; text-align: center; min-width: 60px;
+      white-space: nowrap;
+      text-align: center;
+      min-width: 60px;
     }
-    /* Hover & pointer for project titles */
-    .clickable-project { cursor: pointer; }
+    .clickable-project {
+      cursor: pointer;
+    }
     .clickable-project:hover {
-      color: var(--link); text-decoration: underline;
+      color: var(--link);
+      text-decoration: underline;
     }
 
-    /*-----------------------------*
-     *   Expandable Detail Rows    *
-     *-----------------------------*/
-    .details-row td { background: #f9f9f9; }
-    .details-content {
-      overflow: hidden; max-height: 0;
-      transition: max-height 0.4s ease-out;
-    }
-    .toggle-icon {
-      display: inline-block; width: 1em; text-align: center;
-      font-weight: bold; margin-right: 8px;
-      color: var(--text); font-size: 1em;
+    /* Details row */
+    .details-row td {
+      background: #f9f9f9;
     }
 
-    /*-----------------------------*
-     *    Profile Timeline Styles  *
-     *-----------------------------*/
+    /* Profile timeline */
     .profile-timeline li { margin-bottom: 6px; }
     .profile-timeline strong { color: var(--link); }
 
-    /*-----------------------------*
-     *     Responsive Tweaks       *
-     *-----------------------------*/
+    /* Responsive tweaks */
     @media (max-width: 600px) {
       nav { flex-wrap: wrap; gap: 10px; padding: 10px 5px; }
       nav a { font-size: 0.85em; }
       body { padding: 0 10px; }
       iframe { height: 400px; }
       .close-btn { padding: 8px 12px; font-size: 1em; }
-      .details-row td { font-size: 0.95em; }
       #project-table { font-size: 0.9em; }
     }
     @media (prefers-color-scheme: dark) {
@@ -183,17 +168,17 @@
     <a href="#social">Social</a>
   </nav>
 
-  <!-- Page Title -->
+  <!-- Title -->
   <h1>Seonggyun Kim</h1>
 
-  <!-- Profile Section (dynamically loaded) -->
+  <!-- Profile (fetched) -->
   <section id="profile">
     <h2>Profile</h2>
     <div id="profile-content"></div>
     <div id="cv-viewer"></div>
   </section>
 
-  <!-- Projects Section (dynamically loaded) -->
+  <!-- Projects (fetched) -->
   <section id="projects">
     <h2>Projects</h2>
     <div id="projects-content"></div>
@@ -210,7 +195,7 @@
     </ul>
   </section>
 
-  <!-- Social Links -->
+  <!-- Social -->
   <section id="social">
     <h2>Social</h2>
     <ul>
@@ -225,13 +210,10 @@
     &copy; 2025 Seonggyun Kim
   </footer>
 
-  <!-- Scripts -->
   <script>
     let expandedRow = null;
-    let expandedContentDiv = null;
-    let currentSort = { column: -1, ascending: true };
 
-    // Load profile and projects fragments
+    // Fetch modular content
     window.addEventListener("DOMContentLoaded", () => {
       fetch("profile.html")
         .then(r => r.text())
@@ -242,7 +224,7 @@
         .then(html => document.getElementById("projects-content").innerHTML = html);
     });
 
-    // PDF viewer
+    // View or close embedded PDFs
     function viewPDF(path, targetId) {
       const v = document.getElementById(targetId);
       v.innerHTML = `
@@ -255,80 +237,64 @@
       document.getElementById(targetId).innerHTML = "";
     }
 
-    // Table sorting
+    // Sort table by column
+    let currentSort = { column: -1, ascending: true };
     function sortTable(colIdx) {
       const table = document.getElementById("project-table");
       const rows = Array.from(table.tBodies[0].rows);
       const isNum = colIdx === 1;
       if (currentSort.column === colIdx) currentSort.ascending = !currentSort.ascending;
-      else { currentSort.column = colIdx; currentSort.ascending = true; }
-
-      rows.sort((a, b) => {
+      else {
+        currentSort.column = colIdx;
+        currentSort.ascending = true;
+      }
+      rows.sort((a,b) => {
         let v1 = a.cells[colIdx].innerText.trim();
         let v2 = b.cells[colIdx].innerText.trim();
-        let cmp = isNum ? (parseInt(v1) - parseInt(v2)) : v1.localeCompare(v2);
+        let cmp = isNum ? parseInt(v1) - parseInt(v2) : v1.localeCompare(v2);
         return currentSort.ascending ? cmp : -cmp;
       });
-
       const tbody = table.tBodies[0];
       tbody.innerHTML = "";
       rows.forEach(r => tbody.appendChild(r));
     }
 
-    // Expand/collapse details with animation
-    function toggleDetails(row, pdfPath, fullTitle, institution, description) {
+    // Expand/collapse details instantly
+    function toggleDetails(row, pdfPath, title, inst, desc) {
       const tbody = row.parentElement;
-      const icon = row.querySelector(".toggle-icon");
-      const closePrev = () => {
-        if (expandedRow && expandedContentDiv) {
-          expandedContentDiv.style.maxHeight = "0";
-          setTimeout(() => {
-            if (expandedRow.nextSibling) tbody.removeChild(expandedRow.nextSibling);
-            const prevIcon = expandedRow.querySelector(".toggle-icon");
-            if (prevIcon) prevIcon.textContent = "+";
-          }, 400);
+      // collapse previous
+      if (expandedRow && expandedRow !== row) {
+        if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains("details-row")) {
+          tbody.removeChild(expandedRow.nextSibling);
+          expandedRow.querySelector(".toggle-icon").textContent = "+";
         }
-      };
-
-      // If clicking same row → close
+      }
+      // toggle same
       if (expandedRow === row) {
-        closePrev();
+        if (row.nextSibling && row.nextSibling.classList.contains("details-row")) {
+          tbody.removeChild(row.nextSibling);
+          row.querySelector(".toggle-icon").textContent = "+";
+        }
         expandedRow = null;
-        expandedContentDiv = null;
         return;
       }
-
-      // Close any other open row first
-      closePrev();
-
-      // Insert new detail row
+      // expand new
       const detail = document.createElement("tr");
       detail.className = "details-row";
       detail.innerHTML = `
-        <td colspan="2">
-          <div class="details-content">
-            <div style="font-weight:600; margin-bottom:10px;">
-              ${fullTitle} | ${institution}
-            </div>
-            <ul style="padding-left:20px; margin:0 0 10px 0; line-height:1.5;">
-              ${description.split("|").map(s => `<li>${s.trim()}</li>`).join("")}
-            </ul>
-            <a href="#" onclick="viewPDF('${pdfPath}','project-viewer');return false;">View PDF</a>
+        <td colspan="2" style="padding:15px; background:rgba(0,0,0,0.03);">
+          <div style="font-weight:600; margin-bottom:10px;">
+            ${title} | ${inst}
           </div>
+          <ul style="padding-left:20px; margin:0 0 10px 0; line-height:1.5;">
+            ${desc.split("|").map(s => `<li>${s.trim()}</li>`).join("")}
+          </ul>
+          <a href="#" onclick="viewPDF('${pdfPath}','project-viewer');return false;">View PDF</a>
         </td>
       `;
       tbody.insertBefore(detail, row.nextSibling);
-
-      // Animate expand
-      const contentDiv = detail.querySelector(".details-content");
-      requestAnimationFrame(() => {
-        contentDiv.style.maxHeight = "500px";
-      });
-
-      // Toggle icon
-      if (icon) icon.textContent = "-";
+      row.querySelector(".toggle-icon").textContent = "-";
       expandedRow = row;
-      expandedContentDiv = contentDiv;
     }
   </script>
 </body>
