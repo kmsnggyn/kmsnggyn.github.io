@@ -110,12 +110,13 @@
     }
 
     ul {
-		padding-left: 20px;
-		margin-top: 10px;
-	  }
-	  li {
-		margin-bottom: 8px;
-	  }
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
 
     a {
       text-decoration: none;
@@ -171,41 +172,46 @@
   <section id="profile">
     <h2>Profile</h2>
     <p>Hello, I'm Seonggyun Kim, a master's student in Chemical Engineering for Energy and Environment at KTH, Stockholm. I am passionate about sustainable technologies, decarbonization, and integrating chemical engineering principles with environmental innovation.</p>
-    <p><a href="cv.pdf" target="_blank">Download my CV</a> or <a href="#" onclick="viewPDF('cv-seonggyun-kim.pdf'); return false;">View CV here</a>.</p>
-  </section>
+    <p><a href="cv.pdf" target="_blank">Download my CV</a> or <a href="#" onclick="viewPDF('cv.pdf', 'cv-viewer'); return false;">View CV here</a>.</p>
 
-  <div id="pdf-viewer" style="margin-top: 30px;"></div>
+    <!-- CV-specific viewer -->
+    <div id="cv-viewer" style="margin-top: 30px;"></div>
+  </section>
 
   <section id="projects">
     <h2>Projects</h2>
     <div id="projects-content">
-      <!-- Project table will be loaded here dynamically -->
+      <!-- Project table will be loaded dynamically here -->
     </div>
-  </section>
-  
-  <section id="side-projects">
-  <h2>Side Projects</h2>
-  <ul>
-    <li>Jazz</li>
-    <li>Rice</li>
-    <li>Art</li>
-    <!-- You can add more bullet points easily -->
-  </ul>
-    <iframe width="100%" height="20" scrolling="no" frameborder="no"
-    allow="autoplay"
-    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/kimseonggyun/ten-more-nights&color=%230066cc&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-    style="margin-top: 20px;">
-  </iframe>
-</section>
 
-<section id="social">
-  <h2>Social</h2>
-  <ul>
-    <li><a href="https://github.com/kmsnggyn" target="_blank">GitHub</a></li>
-    <li><a href="https://linkedin.com/in/seonggyun.kim" target="_blank">LinkedIn</a></li>
-    <li><a href="mailto:seonggyun.kim@outlook.com">Email</a></li>
-    
-</section>
+    <!-- Project-specific viewer -->
+    <div id="project-viewer" style="margin-top: 30px;"></div>
+  </section>
+
+  <section id="side-projects">
+    <h2>Side Projects</h2>
+    <ul>
+      <li>Jazz music arrangement project</li>
+      <li>Dynamic chemical process simulator (coming soon)</li>
+      <li>Art and sketching portfolio (coming soon)</li>
+      <li>Original SoundCloud track: "Ten More Nights"</li>
+    </ul>
+<!--    <iframe width="100%" height="166" scrolling="no" frameborder="no"
+      allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/kimseonggyun/ten-more-nights&color=%230066cc&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+      style="margin-top: 20px;">
+    </iframe>
+-->
+  </section>
+
+  <section id="social">
+    <h2>Social</h2>
+    <ul>
+      <li><a href="https://github.com/yourgithub" target="_blank">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/yourlinkedin" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:your@email.com">Email</a></li>
+    </ul>
+  </section>
 
   <footer>
     &copy; 2025 Seonggyun Kim
@@ -261,8 +267,8 @@
       sortedRows.forEach(row => tbody.appendChild(row));
     }
 
-    function viewPDF(filePath) {
-      const viewer = document.getElementById('pdf-viewer');
+    function viewPDF(filePath, target) {
+      const viewer = document.getElementById(target);
       viewer.innerHTML = `
         <iframe src="${filePath}"></iframe>
       `;
