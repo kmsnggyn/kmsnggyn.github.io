@@ -18,189 +18,196 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Theme colors */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Theme colors
+       ───────────────────────────────────────────────────────────────────────────── */
     :root {
-      --background: #ffffff;
-      --text: #333333;
-      --link: #0066cc;
-      --link-hover: #004999;
-      --footer: #777777;
+      --background:   #ffffff;
+      --text:         #333333;
+      --link:         #0066cc;
+      --link-hover:   #004999;
+      --footer:       #777777;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --background: #121212;
-        --text: #dddddd;
-        --link: #66aaff;
+        --text:       #dddddd;
+        --link:       #66aaff;
         --link-hover: #99ccff;
-        --footer: #555555;
+        --footer:     #555555;
       }
     }
 
-    /* Global reset */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Global reset & layout
+       ───────────────────────────────────────────────────────────────────────────── */
     html { scroll-behavior: smooth; }
     body {
       font-family: "Inter", sans-serif;
-      margin: 80px auto 60px;
-      padding: 0 20px;
-      max-width: 800px;
-      line-height: 1.6;
-      background: var(--background);
-      color: var(--text);
+      margin:       80px auto 60px;
+      padding:      0 20px;
+      max-width:    800px;
+      line-height:  1.6;
+      background:   var(--background);
+      color:        var(--text);
     }
 
-    /* Navbar */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Navbar
+       ───────────────────────────────────────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       background: var(--background);
-      display: flex; justify-content: center; gap: 20px;
-      padding: 15px 10px; border-bottom: 1px solid #ccc;
-      z-index: 1000;
+      display:    flex; justify-content: center; gap: 20px;
+      padding:    15px 10px;
+      border-bottom: 1px solid #ccc;
+      z-index:    1000;
     }
     nav a {
-      color: var(--text);
+      color:          var(--text);
       text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95em;
+      font-weight:     600;
+      font-size:       0.95em;
     }
     nav a:hover { color: var(--link); }
 
-    /* Sections */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Sections & headings
+       ───────────────────────────────────────────────────────────────────────────── */
     section { margin-top: 60px; }
     h1, h2 { text-align: center; font-weight: 600; }
     h1 { margin-bottom: 20px; font-size: 1.8em; }
     h2 {
       margin-bottom: 30px;
-      font-size: 1.4em;
-      color: var(--link);
+      font-size:     1.4em;
+      color:         var(--link);
     }
 
-    /* Links & lists */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Links & lists
+       ───────────────────────────────────────────────────────────────────────────── */
     a { color: var(--link); text-decoration: none; }
     a:hover { text-decoration: underline; color: var(--link-hover); }
     ul { padding-left: 20px; margin-top: 10px; }
     li { margin-bottom: 8px; }
 
-     /* ─────────────────────────────────────────────────────────────────────────────
-       1) Viewer containers: full-width and consistent gap
+    /* ─────────────────────────────────────────────────────────────────────────────
+       PDF viewer containers
        ───────────────────────────────────────────────────────────────────────────── */
     #project-viewer,
     #cv-viewer {
-      width: 100%;          /* span the full content width */
-      margin-top: 30px;     /* restore the original spacing */
+      width:      100%;
+      margin-top: 30px;
     }
-
-    /* Close button: block-level left-aligned, with a bit of bottom margin */
     #project-viewer .close-btn,
     #cv-viewer .close-btn {
       display: block;
-      margin: 0 0 10px 0;   /* 10px gap below the button */
+      margin: 0 0 10px 0;
     }
-
-    /* Iframe: always 100% width, fixed 600px height (desktop) */
     #project-viewer iframe,
     #cv-viewer iframe {
-      width: 100%;
+      width:  100%;
       height: 600px;
       border: 1px solid #ccc;
     }
 
-    /* Remove any mobile override that shrank your iframe—delete or comment out:
-       @media (max-width:600px){ iframe { height:400px; } }
-    */
-
     /* ─────────────────────────────────────────────────────────────────────────────
-       2) Toggle icon: equal width for “+” and “–”
+       Close-button styling
        ───────────────────────────────────────────────────────────────────────────── */
-    .toggle-icon {
-      display: inline-block;
-      width: 1em;            /* fixed width equal to one “M” character */
-      text-align: center;    /* center the “+” or “–” in that space */
-      font-size: inherit;    /* same size as surrounding text */
-      vertical-align: middle;
-      margin-right: 8px;
-      cursor: pointer;
-    }
-
     .close-btn {
-      background: var(--link);
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      font-size: 0.9em;
-      cursor: pointer;
+      background:    var(--link);
+      color:         #fff;
+      border:        none;
+      padding:       6px 12px;
+      font-size:     0.9em;
+      cursor:        pointer;
       border-radius: 4px;
       margin-bottom: 10px;
     }
     .close-btn:hover { background: var(--link-hover); }
 
-    /* Project table */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Project table
+       ───────────────────────────────────────────────────────────────────────────── */
     #project-table-wrapper { overflow-x: auto; }
+
     #project-table {
-      width: 100%;
+      width:           100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top:      20px;
     }
     #project-table th,
     #project-table td {
-      padding: 8px 12px;
+      padding:      8px 12px;
       border-bottom: 1px solid #ccc;
-      text-align: left;
+      text-align:    left;
     }
     #project-table th {
       background: #f2f2f2;
-      cursor: pointer;
     }
     .year-column {
       white-space: nowrap;
-      text-align: center;
-      min-width: 60px;
+      text-align:  center;
+      min-width:   60px;
     }
     .clickable-project {
       cursor: pointer;
     }
     .clickable-project:hover {
-      color: var(--link);
+      color:           var(--link);
       text-decoration: underline;
     }
 
+    /* ─────────────────────────────────────────────────────────────────────────────
+       + / – icon for expand
+       ───────────────────────────────────────────────────────────────────────────── */
     .toggle-icon {
-      display: inline-block;
-      font-size: inherit;
+      display:        inline-block;
+      width:          1em;
+      text-align:     center;
+      font-size:      inherit;
       vertical-align: middle;
-      margin-right: 8px;
-      cursor: pointer;
+      margin-right:   8px;
+      cursor:         pointer;
     }
 
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Expanded row content
+       ───────────────────────────────────────────────────────────────────────────── */
     .details-content {
-      overflow: hidden;
+      overflow:   hidden;
       max-height: 0;
-      opacity: 0;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
+      transition: max-height 0.3s ease-out;
     }
-
-
-    /* Details row */
     .details-row td {
       background: #f9f9f9;
     }
 
-    /* Profile timeline */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Profile timeline
+       ───────────────────────────────────────────────────────────────────────────── */
     .profile-timeline li { margin-bottom: 6px; }
     .profile-timeline strong { color: var(--link); }
 
-    /* Responsive tweaks */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Responsive tweaks
+       ───────────────────────────────────────────────────────────────────────────── */
     @media (max-width: 600px) {
       nav { flex-wrap: wrap; gap: 10px; padding: 10px 5px; }
       nav a { font-size: 0.85em; }
       body { padding: 0 10px; }
-      iframe { height: 400px; }
       .close-btn { padding: 8px 12px; font-size: 1em; }
       #project-table { font-size: 0.9em; }
     }
+
     @media (prefers-color-scheme: dark) {
-      nav, #project-table th { border-bottom: 1px solid #555; }
+      nav,
+      #project-table th {
+        border-bottom: 1px solid #555;
+      }
       #project-table th { background: #222; }
-      #project-table td, #project-table th {
+      #project-table td,
+      #project-table th {
         border-bottom: 1px solid #555;
       }
       .details-row td { background: #222; }
@@ -209,7 +216,6 @@
 </head>
 
 <body>
-
   <!-- Navigation -->
   <nav>
     <a href="#profile">Profile</a>
@@ -221,14 +227,14 @@
   <!-- Title -->
   <h1>Seonggyun Kim</h1>
 
-  <!-- Profile (fetched) -->
+  <!-- Profile Section (loaded from profile.html) -->
   <section id="profile">
     <h2>Profile</h2>
     <div id="profile-content"></div>
     <div id="cv-viewer"></div>
   </section>
 
-  <!-- Projects (fetched) -->
+  <!-- Projects Section (loaded from projects.html) -->
   <section id="projects">
     <h2>Projects</h2>
     <div id="projects-content"></div>
@@ -245,7 +251,7 @@
     </ul>
   </section>
 
-  <!-- Social -->
+  <!-- Social Links -->
   <section id="social">
     <h2>Social</h2>
     <ul>
@@ -255,64 +261,42 @@
     </ul>
   </section>
 
-  <!-- Footer -->
   <footer>
     &copy; 2025 Seonggyun Kim
   </footer>
 
   <script>
-    // Fetch modular content
+    // Load profile.html and projects.html into their containers
     window.addEventListener("DOMContentLoaded", () => {
       fetch("profile.html")
-        .then(r => r.text())
+        .then(res => res.text())
         .then(html => document.getElementById("profile-content").innerHTML = html);
 
       fetch("projects.html")
-        .then(r => r.text())
+        .then(res => res.text())
         .then(html => document.getElementById("projects-content").innerHTML = html);
     });
 
-    // View or close embedded PDFs
+    // Show embedded PDF with Close button
     function viewPDF(path, targetId) {
-      const v = document.getElementById(targetId);
-      v.innerHTML = `
+      const container = document.getElementById(targetId);
+      container.innerHTML = `
         <button onclick="closeViewer('${targetId}')" class="close-btn">Close</button>
         <iframe src="${path}"></iframe>
       `;
-      v.scrollIntoView({ behavior: "smooth" });
+      container.scrollIntoView({ behavior: "smooth" });
     }
     function closeViewer(targetId) {
       document.getElementById(targetId).innerHTML = "";
     }
 
-    // Sort table by column
-    let currentSort = { column: -1, ascending: true };
-    function sortTable(colIdx) {
-      const table = document.getElementById("project-table");
-      const rows = Array.from(table.tBodies[0].rows);
-      const isNum = colIdx === 1;
-      if (currentSort.column === colIdx) currentSort.ascending = !currentSort.ascending;
-      else {
-        currentSort.column = colIdx;
-        currentSort.ascending = true;
-      }
-      rows.sort((a,b) => {
-        let v1 = a.cells[colIdx].innerText.trim();
-        let v2 = b.cells[colIdx].innerText.trim();
-        let cmp = isNum ? parseInt(v1) - parseInt(v2) : v1.localeCompare(v2);
-        return currentSort.ascending ? cmp : -cmp;
-      });
-      const tbody = table.tBodies[0];
-      tbody.innerHTML = "";
-      rows.forEach(r => tbody.appendChild(r));
-    }
-
+    // Expand/collapse project details
     let expandedRow = null;
     function toggleDetails(row, pdfPath, fullTitle, institution, description) {
-      const tbody      = row.parentElement;
-      const icon       = row.querySelector(".toggle-icon");
+      const tbody = row.parentElement;
+      const icon  = row.querySelector(".toggle-icon");
 
-      // 1. Close previously expanded row (if it isn’t this one)
+      // Close any other expanded row
       if (expandedRow && expandedRow !== row) {
         const next = expandedRow.nextSibling;
         if (next && next.classList.contains("details-row")) {
@@ -321,17 +305,15 @@
         }
       }
 
-      // 2. If clicking the same row—collapse it
-      if (expandedRow === row
-          && row.nextSibling
-          && row.nextSibling.classList.contains("details-row")) {
+      // If same row clicked again, collapse it
+      if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains("details-row")) {
         tbody.removeChild(row.nextSibling);
         icon.textContent = "+";
         expandedRow = null;
         return;
       }
 
-      // 3. Otherwise, expand this row
+      // Otherwise, expand this row
       const tr = document.createElement("tr");
       tr.classList.add("details-row");
       tr.innerHTML = `
@@ -355,8 +337,6 @@
       icon.textContent = "–";
       expandedRow = row;
     }
-
-
   </script>
 </body>
 </html>
