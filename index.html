@@ -11,6 +11,7 @@
       padding: 0 20px;
       line-height: 1.6;
       color: #333;
+      background-color: #fff;
     }
     h1 {
       text-align: center;
@@ -50,6 +51,22 @@
       font-size: 0.9em;
       color: #777;
     }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #ddd;
+      }
+      .section-title:hover {
+        color: #66aaff;
+      }
+      a {
+        color: #66aaff;
+      }
+      footer {
+        color: #555;
+      }
+    }
   </style>
 </head>
 <body>
@@ -64,7 +81,7 @@
 
   <div class="section-title" onclick="toggle('projects')">&gt; Project files</div>
   <div id="projects" class="content">
-    <!-- Project files will be loaded here -->
+    <!-- Project files will be loaded dynamically -->
   </div>
 
   <footer>
@@ -72,21 +89,28 @@
   </footer>
 
   <script>
+    let projectsLoaded = false;
+
     function toggle(id) {
       const element = document.getElementById(id);
       if (element.style.display === "none" || element.style.display === "") {
         element.style.display = "block";
+        if (id === 'projects' && !projectsLoaded) {
+          fetch('project-files.html')
+            .then(response => response.text())
+            .then(data => {
+              element.innerHTML = data;
+              projectsLoaded = true;
+            })
+            .catch(error => {
+              element.innerHTML = "<p>Failed to load project files.</p>";
+              console.error('Error loading project files:', error);
+            });
+        }
       } else {
         element.style.display = "none";
       }
     }
-
-    // Load the project files dynamically
-    fetch('project-files.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('projects').innerHTML = data;
-      });
   </script>
 </body>
 </html>
