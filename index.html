@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta settings -->
+  <!-- Basic metadata -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Seonggyun Kim</title>
 
-  <!-- Favicon and icons -->
+  <!-- Favicons -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
@@ -15,260 +14,161 @@
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-  <!-- Google Fonts -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Base styles -->
+  <!-- Styles -->
   <style>
-    /* Theme colors */
+    /*-----------------------------*
+     *   Theme & Layout Variables  *
+     *-----------------------------*/
     :root {
-      --background-color: #ffffff;
-      --text-color: #333333;
-      --link-color: #0066cc;
-      --hover-link-color: #004999;
-      --footer-color: #777777;
+      --background: #ffffff;
+      --text: #333333;
+      --link: #0066cc;
+      --link-hover: #004999;
+      --footer: #777777;
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
-        --background-color: #121212;
-        --text-color: #dddddd;
-        --link-color: #66aaff;
-        --hover-link-color: #99ccff;
-        --footer-color: #555555;
+        --background: #121212;
+        --text: #dddddd;
+        --link: #66aaff;
+        --link-hover: #99ccff;
+        --footer: #555555;
       }
     }
 
-    /* General layout */
-    html {
-      scroll-behavior: smooth;
-    }
-
+    /*-----------------------------*
+     *    Global & Body Reset     *
+     *-----------------------------*/
+    html { scroll-behavior: smooth; }
     body {
       font-family: "Inter", sans-serif;
-      max-width: 800px;
       margin: 80px auto 60px;
       padding: 0 20px;
+      max-width: 800px;
       line-height: 1.6;
-      color: var(--text-color);
-      background-color: var(--background-color);
-      font-weight: 400;
+      background: var(--background);
+      color: var(--text);
     }
 
-    /* Navigation bar */
+    /*-----------------------------*
+     *       Navigation Bar        *
+     *-----------------------------*/
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background-color: var(--background-color);
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 15px 10px;
-      border-bottom: 1px solid #ccc;
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--background);
+      display: flex; justify-content: center; gap: 20px;
+      padding: 15px 10px; border-bottom: 1px solid #ccc;
       z-index: 1000;
     }
-
     nav a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: 600;
-      font-size: 0.95em;
+      color: var(--text); text-decoration: none;
+      font-weight: 600; font-size: 0.95em;
     }
+    nav a:hover { color: var(--link); }
 
-    nav a:hover {
-      color: var(--link-color);
-    }
-
-    /* Section headings */
-    section {
-      margin-top: 60px;
-    }
-
-    h1, h2 {
-      text-align: center;
-      font-weight: 600;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      font-size: 1.8em;
-    }
-
+    /*-----------------------------*
+     *        Section Titles       *
+     *-----------------------------*/
+    section { margin-top: 60px; }
+    h1, h2 { text-align: center; font-weight: 600; }
+    h1 { margin-bottom: 20px; font-size: 1.8em; }
     h2 {
-      margin-bottom: 30px;
-      font-size: 1.4em;
-      color: var(--link-color);
+      margin-bottom: 30px; font-size: 1.4em;
+      color: var(--link);
     }
 
-    /* Links and lists */
-    ul {
-      padding-left: 20px;
-      margin-top: 10px;
-    }
+    /*-----------------------------*
+     *        Link & Lists         *
+     *-----------------------------*/
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul { padding-left: 20px; margin-top: 10px; }
+    li { margin-bottom: 8px; }
 
-    li {
-      margin-bottom: 8px;
-    }
-
-    a {
-      text-decoration: none;
-      color: var(--link-color);
-    }
-
-    a:hover {
-      text-decoration: underline;
-      color: var(--hover-link-color);
-    }
-
-    /* Embedded content (iframe) */
+    /*-----------------------------*
+     *      Embedded Iframe        *
+     *-----------------------------*/
     iframe {
-      margin-top: 30px;
-      width: 100%;
-      height: 600px;
+      margin-top: 30px; width: 100%; height: 600px;
       border: 1px solid #ccc;
     }
 
-    /* Button styles */
+    /*-----------------------------*
+     *     PDF Viewer Button       *
+     *-----------------------------*/
     .close-btn {
-      background-color: var(--link-color);
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      font-size: 0.9em;
-      cursor: pointer;
-      border-radius: 4px;
-      margin-bottom: 10px;
+      background: var(--link); color: #fff; border: none;
+      padding: 6px 12px; font-size: 0.9em; cursor: pointer;
+      border-radius: 4px; margin-bottom: 10px;
     }
+    .close-btn:hover { background: var(--link-hover); }
 
-    .close-btn:hover {
-      background-color: var(--hover-link-color);
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 80px;
-      text-align: center;
-      font-size: 0.9em;
-      color: var(--footer-color);
-      font-weight: 400;
-      letter-spacing: 0.5px;
-    }
-
-    /* Project table */
-    #project-table-wrapper {
-      overflow-x: auto;
-    }
-
+    /*-----------------------------*
+     *      Project Table Styles   *
+     *-----------------------------*/
+    #project-table-wrapper { overflow-x: auto; }
     #project-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      font-size: 1em;
+      width: 100%; border-collapse: collapse; margin-top: 20px;
     }
-
     #project-table th, #project-table td {
+      padding: 8px 12px; border-bottom: 1px solid #ccc;
       text-align: left;
-      padding: 8px 12px;
-      border-bottom: 1px solid #ccc;
     }
-
     #project-table th {
-      background-color: #f2f2f2;
-      cursor: pointer;
+      background: #f2f2f2; cursor: pointer;
     }
-
-    #project-table td.year-column, #project-table th.year-column {
-      white-space: nowrap;
-      text-align: center;
-      min-width: 60px;
+    /* Year column: no wrap, centered */
+    .year-column {
+      white-space: nowrap; text-align: center; min-width: 60px;
     }
-
-    .clickable-project {
-      cursor: pointer;
-    }
-
+    /* Hover & pointer for project titles */
+    .clickable-project { cursor: pointer; }
     .clickable-project:hover {
-      color: var(--link-color);
-      text-decoration: underline;
+      color: var(--link); text-decoration: underline;
     }
 
-    /* Expandable project detail rows */
-    .details-row td {
-      background-color: #f9f9f9;
-    }
-
+    /*-----------------------------*
+     *   Expandable Detail Rows    *
+     *-----------------------------*/
+    .details-row td { background: #f9f9f9; }
     .details-content {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.3s ease-out;
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.4s ease-out;
     }
-
     .toggle-icon {
-      display: inline-block;
-      width: 1em;
-      text-align: center;
-      font-weight: bold;
-      margin-right: 8px;
-      color: var(--text-color);
-      font-size: 1em;
+      display: inline-block; width: 1em; text-align: center;
+      font-weight: bold; margin-right: 8px;
+      color: var(--text); font-size: 1em;
     }
 
-    /* Responsive tweaks for small screens */
+    /*-----------------------------*
+     *    Profile Timeline Styles  *
+     *-----------------------------*/
+    .profile-timeline li { margin-bottom: 6px; }
+    .profile-timeline strong { color: var(--link); }
+
+    /*-----------------------------*
+     *     Responsive Tweaks       *
+     *-----------------------------*/
     @media (max-width: 600px) {
-      nav {
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 10px 5px;
-      }
-
-      nav a {
-        font-size: 0.85em;
-      }
-
-      body {
-        padding: 0 10px;
-      }
-
-      iframe {
-        height: 400px;
-      }
-
-      .close-btn {
-        padding: 8px 12px;
-        font-size: 1em;
-      }
-
-      .details-row td {
-        font-size: 0.95em;
-      }
-
-      #project-table {
-        font-size: 0.9em;
-      }
-	  
-	  #project-table-wrapper {
-        overflow-x: auto;
-      }
+      nav { flex-wrap: wrap; gap: 10px; padding: 10px 5px; }
+      nav a { font-size: 0.85em; }
+      body { padding: 0 10px; }
+      iframe { height: 400px; }
+      .close-btn { padding: 8px 12px; font-size: 1em; }
+      .details-row td { font-size: 0.95em; }
+      #project-table { font-size: 0.9em; }
     }
-
     @media (prefers-color-scheme: dark) {
-      nav {
-        border-bottom: 1px solid #555;
-      }
-
-      #project-table th {
-        background-color: #222;
-      }
-
+      nav, #project-table th { border-bottom: 1px solid #555; }
+      #project-table th { background: #222; }
       #project-table td, #project-table th {
         border-bottom: 1px solid #555;
       }
-
-      .details-row td {
-        background-color: #222;
-      }
+      .details-row td { background: #222; }
     }
   </style>
 </head>
@@ -283,33 +183,34 @@
     <a href="#social">Social</a>
   </nav>
 
+  <!-- Page Title -->
   <h1>Seonggyun Kim</h1>
 
-  <!-- Profile Section -->
+  <!-- Profile Section (dynamically loaded) -->
   <section id="profile">
     <h2>Profile</h2>
     <div id="profile-content"></div>
-    <div id="cv-viewer" style="margin-top: 30px;"></div>
+    <div id="cv-viewer"></div>
   </section>
 
-  <!-- Projects Section -->
+  <!-- Projects Section (dynamically loaded) -->
   <section id="projects">
     <h2>Projects</h2>
     <div id="projects-content"></div>
-    <div id="project-viewer" style="margin-top: 30px;"></div>
+    <div id="project-viewer"></div>
   </section>
 
-  <!-- Side Projects Section -->
+  <!-- Side Projects -->
   <section id="side-projects">
     <h2>Side Projects</h2>
     <ul>
       <li>Jazz</li>
-      <li>Linux rice (I use Arch btw)</li>
+      <li>Linux rice (I use Arch BTW)</li>
       <li>Art</li>
     </ul>
   </section>
 
-  <!-- Social Links Section -->
+  <!-- Social Links -->
   <section id="social">
     <h2>Social</h2>
     <ul>
@@ -319,142 +220,116 @@
     </ul>
   </section>
 
+  <!-- Footer -->
   <footer>
     &copy; 2025 Seonggyun Kim
   </footer>
 
-  <!-- JavaScript -->
+  <!-- Scripts -->
   <script>
-    let projectsLoaded = false;
     let expandedRow = null;
+    let expandedContentDiv = null;
     let currentSort = { column: -1, ascending: true };
 
-    window.addEventListener("DOMContentLoaded", function() {
-      fetch('profile.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('profile-content').innerHTML = data;
-        })
-        .catch(error => {
-          console.error('Error loading profile:', error);
-        });
+    // Load profile and projects fragments
+    window.addEventListener("DOMContentLoaded", () => {
+      fetch("profile.html")
+        .then(r => r.text())
+        .then(html => document.getElementById("profile-content").innerHTML = html);
 
-      fetch('projects.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('projects-content').innerHTML = data;
-          projectsLoaded = true;
-        })
-        .catch(error => {
-          document.getElementById('projects-content').innerHTML = "<p>Failed to load project files.</p>";
-          console.error('Error loading projects:', error);
-        });
+      fetch("projects.html")
+        .then(r => r.text())
+        .then(html => document.getElementById("projects-content").innerHTML = html);
     });
 
-    function viewPDF(filePath, target) {
-      const viewer = document.getElementById(target);
-      viewer.innerHTML = `
-        <button onclick="closeViewer('${target}')" class="close-btn">Close</button>
-        <iframe src="${filePath}"></iframe>
+    // PDF viewer
+    function viewPDF(path, targetId) {
+      const v = document.getElementById(targetId);
+      v.innerHTML = `
+        <button onclick="closeViewer('${targetId}')" class="close-btn">Close</button>
+        <iframe src="${path}"></iframe>
       `;
-      viewer.scrollIntoView({ behavior: "smooth" });
+      v.scrollIntoView({ behavior: "smooth" });
+    }
+    function closeViewer(targetId) {
+      document.getElementById(targetId).innerHTML = "";
     }
 
-    function closeViewer(target) {
-      document.getElementById(target).innerHTML = "";
-    }
-
-    function sortTable(columnIndex) {
+    // Table sorting
+    function sortTable(colIdx) {
       const table = document.getElementById("project-table");
-      const tbody = table.tBodies[0];
-      const rows = Array.from(tbody.rows);
-      const isNumber = columnIndex === 1;
+      const rows = Array.from(table.tBodies[0].rows);
+      const isNum = colIdx === 1;
+      if (currentSort.column === colIdx) currentSort.ascending = !currentSort.ascending;
+      else { currentSort.column = colIdx; currentSort.ascending = true; }
 
-      if (currentSort.column === columnIndex) {
-        currentSort.ascending = !currentSort.ascending;
-      } else {
-        currentSort.column = columnIndex;
-        currentSort.ascending = true;
-      }
-
-      const sortedRows = rows.sort((a, b) => {
-        const aText = a.cells[columnIndex].innerText.trim();
-        const bText = b.cells[columnIndex].innerText.trim();
-        return currentSort.ascending
-          ? (isNumber ? parseInt(aText) - parseInt(bText) : aText.localeCompare(bText))
-          : (isNumber ? parseInt(bText) - parseInt(aText) : bText.localeCompare(aText));
+      rows.sort((a, b) => {
+        let v1 = a.cells[colIdx].innerText.trim();
+        let v2 = b.cells[colIdx].innerText.trim();
+        let cmp = isNum ? (parseInt(v1) - parseInt(v2)) : v1.localeCompare(v2);
+        return currentSort.ascending ? cmp : -cmp;
       });
 
+      const tbody = table.tBodies[0];
       tbody.innerHTML = "";
-      sortedRows.forEach(row => tbody.appendChild(row));
+      rows.forEach(r => tbody.appendChild(r));
     }
 
-  let expandedRow = null;
-  let expandedContentDiv = null;
+    // Expand/collapse details with animation
+    function toggleDetails(row, pdfPath, fullTitle, institution, description) {
+      const tbody = row.parentElement;
+      const icon = row.querySelector(".toggle-icon");
+      const closePrev = () => {
+        if (expandedRow && expandedContentDiv) {
+          expandedContentDiv.style.maxHeight = "0";
+          setTimeout(() => {
+            if (expandedRow.nextSibling) tbody.removeChild(expandedRow.nextSibling);
+            const prevIcon = expandedRow.querySelector(".toggle-icon");
+            if (prevIcon) prevIcon.textContent = "+";
+          }, 400);
+        }
+      };
 
-  function toggleDetails(row, pdfPath, fullTitle, institution, description) {
-    const tbody = row.parentElement;
-    const toggleIcon = row.querySelector(".toggle-icon");
-
-    const closePrevious = () => {
-      if (expandedRow && expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
-        expandedContentDiv.style.maxHeight = "0";
-
-        // Remove previous expanded row after animation
-        setTimeout(() => {
-          if (expandedRow.nextSibling) {
-            tbody.removeChild(expandedRow.nextSibling);
-          }
-          if (expandedRow.querySelector(".toggle-icon")) {
-            expandedRow.querySelector(".toggle-icon").textContent = "+";
-          }
-        }, 300); // Match animation duration
+      // If clicking same row → close
+      if (expandedRow === row) {
+        closePrev();
+        expandedRow = null;
+        expandedContentDiv = null;
+        return;
       }
-    };
 
-    // If clicking the already open row → close it
-    if (expandedRow === row) {
-      closePrevious();
-      expandedRow = null;
-      expandedContentDiv = null;
-      return;
+      // Close any other open row first
+      closePrev();
+
+      // Insert new detail row
+      const detail = document.createElement("tr");
+      detail.className = "details-row";
+      detail.innerHTML = `
+        <td colspan="2">
+          <div class="details-content">
+            <div style="font-weight:600; margin-bottom:10px;">
+              ${fullTitle} | ${institution}
+            </div>
+            <ul style="padding-left:20px; margin:0 0 10px 0; line-height:1.5;">
+              ${description.split("|").map(s => `<li>${s.trim()}</li>`).join("")}
+            </ul>
+            <a href="#" onclick="viewPDF('${pdfPath}','project-viewer');return false;">View PDF</a>
+          </div>
+        </td>
+      `;
+      tbody.insertBefore(detail, row.nextSibling);
+
+      // Animate expand
+      const contentDiv = detail.querySelector(".details-content");
+      requestAnimationFrame(() => {
+        contentDiv.style.maxHeight = "500px";
+      });
+
+      // Toggle icon
+      if (icon) icon.textContent = "-";
+      expandedRow = row;
+      expandedContentDiv = contentDiv;
     }
-
-    closePrevious();
-
-    // Create new expanded row
-    const detailsRow = document.createElement('tr');
-    detailsRow.classList.add('details-row');
-    detailsRow.innerHTML = `
-      <td colspan="2" style="padding: 15px; background: rgba(0,0,0,0.03); border-top: none;">
-        <div class="details-content" style="overflow: hidden; max-height: 0; transition: max-height 0.3s ease;">
-          <div style="font-weight: 600; margin-bottom: 10px;">${fullTitle} | ${institution}</div>
-          <ul style="padding-left: 20px; margin: 0 0 10px 0; line-height: 1.5;">
-            ${description.split('|').map(line => `<li>${line.trim()}</li>`).join('')}
-          </ul>
-          <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
-        </div>
-      </td>
-    `;
-    tbody.insertBefore(detailsRow, row.nextSibling);
-
-    const newContentDiv = detailsRow.querySelector('.details-content');
-
-    // Animate opening
-    requestAnimationFrame(() => {
-      newContentDiv.style.maxHeight = "500px";
-    });
-
-    // Change + to -
-    if (toggleIcon) toggleIcon.textContent = "-";
-
-    expandedRow = row;
-    expandedContentDiv = newContentDiv;
-  }
-
-
-
   </script>
-
 </body>
 </html>
