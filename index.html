@@ -389,53 +389,61 @@
       sortedRows.forEach(row => tbody.appendChild(row));
     }
 
-    function toggleDetails(row, pdfPath, fullTitle, institution, description) {
-      const tbody = row.parentElement;
-      const toggleIcon = row.querySelector(".toggle-icon");
+  function toggleDetails(row, pdfPath, fullTitle, institution, description) {
+    const tbody = row.parentElement;
+    const toggleIcon = row.querySelector(".toggle-icon");
 
-      if (expandedRow && expandedRow !== row) {
-        if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
-          expandedRow.nextSibling.style.maxHeight = "0";
-          setTimeout(() => {
-            if (expandedRow.nextSibling) tbody.removeChild(expandedRow.nextSibling);
-          }, 200);
-          const oldToggle = expandedRow.querySelector(".toggle-icon");
-          if (oldToggle) oldToggle.textContent = "+";
-        }
-      }
-
-      if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains('details-row')) {
-        row.nextSibling.style.maxHeight = "0";
+    if (expandedRow && expandedRow !== row) {
+      if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
+        expandedRow.nextSibling.style.maxHeight = "0";
         setTimeout(() => {
-          if (row.nextSibling) tbody.removeChild(row.nextSibling);
+          if (expandedRow.nextSibling) {
+            tbody.removeChild(expandedRow.nextSibling);
+          }
         }, 200);
-        if (toggleIcon) toggleIcon.textContent = "+";
-        expandedRow = null;
-        return;
+        const previousToggleIcon = expandedRow.querySelector(".toggle-icon");
+        if (previousToggleIcon) previousToggleIcon.textContent = "+";
       }
-
-      const detailsRow = document.createElement('tr');
-      detailsRow.classList.add('details-row');
-      detailsRow.innerHTML = `
-        <td colspan="2">
-          <div class="details-content">
-            <strong>Title:</strong> ${fullTitle}<br>
-            <strong>Institution:</strong> ${institution}<br>
-            <strong>Description:</strong> ${description}<br><br>
-            <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
-          </div>
-        </td>
-      `;
-      tbody.insertBefore(detailsRow, row.nextSibling);
-
-      requestAnimationFrame(() => {
-        const contentDiv = detailsRow.querySelector('.details-content');
-        if (contentDiv) contentDiv.style.maxHeight = "500px";
-      });
-
-      if (toggleIcon) toggleIcon.textContent = "-";
-      expandedRow = row;
     }
+
+    if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains('details-row')) {
+      row.nextSibling.style.maxHeight = "0";
+      setTimeout(() => {
+        if (row.nextSibling) {
+          tbody.removeChild(row.nextSibling);
+        }
+      }, 200);
+      if (toggleIcon) toggleIcon.textContent = "+";
+      expandedRow = null;
+      return;
+    }
+
+    const detailsRow = document.createElement('tr');
+    detailsRow.classList.add('details-row');
+    detailsRow.innerHTML = `
+      <td colspan="2" style="padding: 15px; background: rgba(0,0,0,0.03); border-top: none;">
+        <div class="details-content" style="overflow: hidden; max-height: 0; transition: max-height 0.3s ease;">
+          <div style="font-weight: 600; margin-bottom: 10px;">${fullTitle} | ${institution}</div>
+          <ul style="padding-left: 20px; margin: 0 0 10px 0; line-height: 1.5;">
+            ${description.split('|').map(line => `<li>${line.trim()}</li>`).join('')}
+          </ul>
+          <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
+        </div>
+      </td>
+    `;
+    tbody.insertBefore(detailsRow, row.nextSibling);
+
+    requestAnimationFrame(() => {
+      const contentDiv = detailsRow.querySelector('.details-content');
+      if (contentDiv) {
+        contentDiv.style.maxHeight = "500px";
+      }
+    });
+
+    if (toggleIcon) toggleIcon.textContent = "-";
+    expandedRow = row;
+  }
+
   </script>
 
 </body>
