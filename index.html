@@ -81,12 +81,19 @@
     li { margin-bottom: 8px; }
 
     /* PDF viewer */
-    iframe {
-      margin-top: 30px;
-      width: 100%;
-      height: 600px;
-      border: 1px solid #ccc;
+    #project-viewer {
+      margin-top: 20px; /* table → close btn gap */
     }
+    #cv-viewer {
+      margin-top: 20px; /* profile → close btn gap */
+    }
+
+    /* 3. Pull the iframe closer to its close button */
+    #project-viewer iframe,
+    #cv-viewer iframe {
+      margin-top: 10px;
+    }
+    
     .close-btn {
       background: var(--link);
       color: #fff;
@@ -128,17 +135,13 @@
       color: var(--link);
       text-decoration: underline;
     }
-    
-    /* toggle icon */
+
     .toggle-icon {
       display: inline-block;
-      width: 1em;
-      text-align: center;
-      font-family: monospace;       /* ensure + and – occupy same width */
-      font-size: 1em;
-      font-weight: bold;
-      color: var(--text-color);
-      /* no transform here any more */
+      font-size: inherit;
+      vertical-align: middle;
+      margin-right: 8px;
+      cursor: pointer;
     }
 
     .details-content {
@@ -278,71 +281,54 @@
     }
 
     let expandedRow = null;
-
     function toggleDetails(row, pdfPath, fullTitle, institution, description) {
-      const tbody = row.parentElement;
-      const icon  = row.querySelector(".toggle-icon");
+      const tbody      = row.parentElement;
+      const icon       = row.querySelector(".toggle-icon");
 
-      // 1. If another row is open, close it
+      // 1. Close previously expanded row (if it isn’t this one)
       if (expandedRow && expandedRow !== row) {
-        const prevContent = expandedRow.nextSibling?.querySelector(".details-content");
-        if (prevContent) {
-          prevContent.style.opacity    = "0";
-          prevContent.style.maxHeight  = "0";
-          setTimeout(() => {
-            tbody.removeChild(expandedRow.nextSibling);
-          }, 300);
+        const next = expandedRow.nextSibling;
+        if (next && next.classList.contains("details-row")) {
+          tbody.removeChild(next);
+          expandedRow.querySelector(".toggle-icon").textContent = "+";
         }
-        expandedRow.querySelector(".toggle-icon").textContent = "+";
       }
 
-      // 2. If this same row is open, just close it
-      if (expandedRow === row && row.nextSibling?.classList.contains("details-row")) {
-        const content = row.nextSibling.querySelector(".details-content");
-        content.style.opacity   = "0";
-        content.style.maxHeight = "0";
-        setTimeout(() => {
-          tbody.removeChild(row.nextSibling);
-        }, 300);
+      // 2. If clicking the same row—collapse it
+      if (expandedRow === row
+          && row.nextSibling
+          && row.nextSibling.classList.contains("details-row")) {
+        tbody.removeChild(row.nextSibling);
         icon.textContent = "+";
         expandedRow = null;
         return;
       }
 
-      // 3. Otherwise, build and insert the details row
-      const detailsRow = document.createElement("tr");
-      detailsRow.classList.add("details-row");
-      detailsRow.innerHTML = `
+      // 3. Otherwise, expand this row
+      const tr = document.createElement("tr");
+      tr.classList.add("details-row");
+      tr.innerHTML = `
         <td colspan="2" style="padding:15px; background:rgba(0,0,0,0.03); border-top:none;">
-          <div class="details-content">
-            <div style="font-weight:600; margin-bottom:10px;">
-              ${fullTitle} | ${institution}
-            </div>
-            <ul style="padding-left:20px; margin:0 0 10px 0; line-height:1.5;">
-              ${description
-                .split("|")
-                .map(line => `<li>${line.trim()}</li>`)
-                .join("")}
-            </ul>
-            <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">
-              View PDF
-            </a>
+          <div style="font-weight:600; margin-bottom:10px;">
+            ${fullTitle} | ${institution}
           </div>
+          <ul style="padding-left:20px; margin:0 0 10px; line-height:1.5;">
+            ${description
+              .split("|")
+              .map(line => `<li>${line.trim()}</li>`)
+              .join("")}
+          </ul>
+          <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">
+            View PDF
+          </a>
         </td>
       `;
-      tbody.insertBefore(detailsRow, row.nextSibling);
+      tbody.insertBefore(tr, row.nextSibling);
 
-      // 4. Trigger the expand animation
-      requestAnimationFrame(() => {
-        const content = detailsRow.querySelector(".details-content");
-        content.style.maxHeight = "500px";
-        content.style.opacity   = "1";
-      });
-
-      // 5. Toggle the icon
-      icon.textContent = "-";
+      icon.textContent = "–";
       expandedRow = row;
     }
+
 
   </script>
 </body>
