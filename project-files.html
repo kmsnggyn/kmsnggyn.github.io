@@ -1,10 +1,10 @@
-<table>
+<table id="project-table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Year</th>
-      <th>Institution</th>
-      <th>Link</th>
+      <th onclick="sortTable(0)">Title</th>
+      <th onclick="sortTable(1)">Year</th>
+      <th onclick="sortTable(2)">Institution</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -12,70 +12,102 @@
       <td>Biomass-fired Combined Heat and Power Plant with a Fuel Drier</td>
       <td>2023</td>
       <td>KTH</td>
-      <td><a href="project-files/biomass-fired-chp-plant-with-fuel-drier.pdf" target="_blank">Download</a></td>
+      <td>
+        <a href="project-files/biomass-fired-chp-plant-with-fuel-drier.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/biomass-fired-chp-plant-with-fuel-drier.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
       <td>Techno-economic Analysis of CCUS in Sweden</td>
       <td>2024</td>
       <td>KTH</td>
-      <td><a href="project-files/techno-economic-analysis-ccus-sweden.pdf" target="_blank">Download</a></td>
+      <td>
+        <a href="project-files/techno-economic-analysis-ccus-sweden.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/techno-economic-analysis-ccus-sweden.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
-      <td>APS Competition Submission (Seonggyun Kim)</td>
+      <td>APS European Competition Submission</td>
       <td>2024</td>
       <td>AVEVA</td>
-      <td><a href="project-files/aps-competition-submission-seonggyun-kim.pdf" target="_blank">Download</a></td>
+      <td>
+        <a href="project-files/aps-competition-submission-seonggyun-kim.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/aps-competition-submission-seonggyun-kim.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
       <td>Calculation for CO₂ Compression and Refrigeration for CCS</td>
-      <td>2024</td>
-      <td>KTH</td>
-      <td><a href="project-files/co2-compression-refrigeration-ccs-energy-penalty.pdf" target="_blank">Download</a></td>
+      <td>2021</td>
+      <td>Hanyang</td>
+      <td>
+        <a href="project-files/co2-compression-refrigeration-ccs-energy-penalty.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/co2-compression-refrigeration-ccs-energy-penalty.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
       <td>Eigenfaces (김성균)</td>
-      <td>2021</td>
-      <td>SNU</td>
-      <td><a href="project-files/eigenfaces-kim-seonggyun.pdf" target="_blank">Download</a></td>
+      <td>20210</td>
+      <td>Hanyang</td>
+      <td>
+        <a href="project-files/eigenfaces-kim-seonggyun.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/eigenfaces-kim-seonggyun.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
       <td>Metal Recovery Using Supercritical CO₂</td>
-      <td>2022</td>
-      <td>Fraunhofer UMSICHT</td>
-      <td><a href="project-files/metal-recovery-supercritical-co2.pdf" target="_blank">Download</a></td>
+      <td>2024</td>
+      <td>KTH</td>
+      <td>
+        <a href="project-files/metal-recovery-supercritical-co2.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/metal-recovery-supercritical-co2.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
       <td>Nickel-rich Electrodes for Li-ion Batteries</td>
       <td>2022</td>
       <td>KTH</td>
-      <td><a href="project-files/nickel-rich-electrodes-li-ion-batteries.pdf" target="_blank">Download</a></td>
+      <td>
+        <a href="project-files/nickel-rich-electrodes-li-ion-batteries.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/nickel-rich-electrodes-li-ion-batteries.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
       <td>NRTL Parameter Optimization for Alkane–Sulfolane Binary Mixtures</td>
       <td>2024</td>
-      <td>AVEVA</td>
-      <td><a href="project-files/nrtl-parameter-optimization-alkane-sulfolane.pdf" target="_blank">Download</a></td>
+      <td>Hanyang</td>
+      <td>
+        <a href="project-files/nrtl-parameter-optimization-alkane-sulfolane.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/nrtl-parameter-optimization-alkane-sulfolane.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
       <td>Pressurized Pilot-scale Fluidized Bed Gasifier: A Risk Analysis</td>
       <td>2022</td>
-      <td>Fraunhofer UMSICHT</td>
-      <td><a href="project-files/pressurized-fluidized-bed-gasifier-risk-analysis.pdf" target="_blank">Download</a></td>
+      <td>KTH</td>
+      <td>
+        <a href="project-files/pressurized-fluidized-bed-gasifier-risk-analysis.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/pressurized-fluidized-bed-gasifier-risk-analysis.pdf'); return false;">View</a>
+      </td>
     </tr>
 
     <tr>
       <td>Simulation and Optimization of MDEA-based Carbon Capture Process</td>
       <td>2025</td>
-      <td>KTH</td>
-      <td><a href="project-files/simulation-optimization-mdea-carbon-capture.pdf" target="_blank">Download</a></td>
+      <td>Hanyang</td>
+      <td>
+        <a href="project-files/simulation-optimization-mdea-carbon-capture.pdf" target="_blank">Download</a> |
+        <a href="#" onclick="viewPDF('project-files/simulation-optimization-mdea-carbon-capture.pdf'); return false;">View</a>
+      </td>
     </tr>
   </tbody>
 </table>
+
+<div id="pdf-viewer"></div>
