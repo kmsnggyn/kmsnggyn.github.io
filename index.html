@@ -160,27 +160,35 @@
   <script>
     let projectsLoaded = false;
 
-    function toggle(id) {
-      const element = document.getElementById(id);
-      if (element.style.display === "none" || element.style.display === "") {
-        element.style.display = "block";
+	function toggle(id) {
+	  const sections = ["cv", "projects"];
 
-        if (id === 'projects' && !projectsLoaded) {
-          fetch('project-files.html')
-            .then(response => response.text())
-            .then(data => {
-              element.innerHTML = data;
-              projectsLoaded = true;
-            })
-            .catch(error => {
-              element.innerHTML = "<p>Failed to load project files.</p>";
-              console.error('Error loading project files:', error);
-            });
-        }
-      } else {
-        element.style.display = "none";
-      }
-    }
+	  sections.forEach(sectionId => {
+		const element = document.getElementById(sectionId);
+		if (sectionId === id) {
+		  // Open the one you clicked
+		  element.style.display = (element.style.display === "block") ? "none" : "block";
+
+		  // If it's the projects section, and not yet loaded
+		  if (id === 'projects' && !projectsLoaded && element.style.display === "block") {
+			fetch('project-files.html')
+			  .then(response => response.text())
+			  .then(data => {
+				element.innerHTML = data;
+				projectsLoaded = true;
+			  })
+			  .catch(error => {
+				element.innerHTML = "<p>Failed to load project files.</p>";
+				console.error('Error loading project files:', error);
+			  });
+		  }
+		} else {
+		  // Close the others
+		  element.style.display = "none";
+		}
+	  });
+	}
+
 
     let currentSort = { column: -1, ascending: true };
 
