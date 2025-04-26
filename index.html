@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta settings -->
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Seonggyun Kim</title>
 
   <!-- Favicon and icons -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -11,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-  <meta charset="UTF-8">
-  <title>Seonggyun Kim</title>
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
+  <!-- Base styles -->
   <style>
+    /* Theme colors */
     :root {
       --background-color: #ffffff;
       --text-color: #333333;
@@ -34,6 +39,7 @@
       }
     }
 
+    /* General layout */
     html {
       scroll-behavior: smooth;
     }
@@ -49,6 +55,7 @@
       font-weight: 400;
     }
 
+    /* Navigation bar */
     nav {
       position: fixed;
       top: 0;
@@ -74,6 +81,7 @@
       color: var(--link-color);
     }
 
+    /* Section headings */
     section {
       margin-top: 60px;
     }
@@ -94,6 +102,7 @@
       color: var(--link-color);
     }
 
+    /* Links and lists */
     ul {
       padding-left: 20px;
       margin-top: 10px;
@@ -113,6 +122,7 @@
       color: var(--hover-link-color);
     }
 
+    /* Embedded content (iframe) */
     iframe {
       margin-top: 30px;
       width: 100%;
@@ -120,6 +130,7 @@
       border: 1px solid #ccc;
     }
 
+    /* Button styles */
     .close-btn {
       background-color: var(--link-color);
       color: white;
@@ -135,6 +146,7 @@
       background-color: var(--hover-link-color);
     }
 
+    /* Footer */
     footer {
       margin-top: 80px;
       text-align: center;
@@ -144,127 +156,126 @@
       letter-spacing: 0.5px;
     }
 
+    /* Project table */
+    #project-table-wrapper {
+      overflow-x: auto;
+    }
+
+    #project-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 1em;
+    }
+
+    #project-table th, #project-table td {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #project-table th {
+      background-color: #f2f2f2;
+      cursor: pointer;
+    }
+
+    #project-table td.year-column, #project-table th.year-column {
+      white-space: nowrap;
+      text-align: center;
+      min-width: 60px;
+    }
+
+    .clickable-project {
+      cursor: pointer;
+    }
+
+    .clickable-project:hover {
+      color: var(--link-color);
+      text-decoration: underline;
+    }
+
+    /* Expandable project detail rows */
+    .details-row td {
+      background-color: #f9f9f9;
+    }
+
+    .details-content {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .toggle-icon {
+      display: inline-block;
+      width: 1em;
+      text-align: center;
+      font-weight: bold;
+      margin-right: 8px;
+      color: var(--text-color);
+      font-size: 1em;
+    }
+
+    /* Responsive tweaks for small screens */
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 5px;
+      }
+
+      nav a {
+        font-size: 0.85em;
+      }
+
+      body {
+        padding: 0 10px;
+      }
+
+      iframe {
+        height: 400px;
+      }
+
+      .close-btn {
+        padding: 8px 12px;
+        font-size: 1em;
+      }
+
+      .details-row td {
+        font-size: 0.95em;
+      }
+
+      #project-table {
+        font-size: 0.9em;
+      }
+	  
+	  #project-table-wrapper {
+        overflow-x: auto;
+      }
+    }
+
     @media (prefers-color-scheme: dark) {
       nav {
         border-bottom: 1px solid #555;
       }
+
+      #project-table th {
+        background-color: #222;
+      }
+
+      #project-table td, #project-table th {
+        border-bottom: 1px solid #555;
+      }
+
+      .details-row td {
+        background-color: #222;
+      }
     }
-	
-	#project-table {
-	  width: 100%;
-	  border-collapse: collapse;
-	  margin-top: 20px;
-	}
-
-	#project-table th, #project-table td {
-	  text-align: left;
-	  padding: 8px 12px;
-	  border-bottom: 1px solid #ccc;
-	}
-
-	#project-table th {
-	  background-color: #f2f2f2;
-	  cursor: pointer;
-	}
-
-	#project-table td {
-	  word-break: break-word;
-	}
-
-	.clickable-project {
-	  cursor: pointer;
-	}
-
-	.clickable-project:hover {
-	  color: var(--link-color);
-	  text-decoration: underline;
-	}
-
-	.arrow {
-	  display: inline-block;
-	  width: 1em;
-	  text-align: center;
-	  margin-right: 5px;
-	  transition: transform 0.2s ease;
-	}
-
-	.rotated {
-	  transform: rotate(90deg);
-	}
-
-	.details-row td {
-	  background-color: #f9f9f9;
-	}
-	
-	.profile-timeline li {
-	  margin-bottom: 6px;
-	}
-	.profile-timeline strong {
-	  color: var(--link-color);
-	}
-
-
-	@media (prefers-color-scheme: dark) {
-	  #project-table th {
-		background-color: #222;
-	  }
-	  #project-table td, #project-table th {
-		border-bottom: 1px solid #555;
-	  }
-	  .details-row td {
-		background-color: #222;
-	  }
-	}
-
-	@media (max-width: 600px) {
-	  nav {
-		flex-wrap: wrap;
-		gap: 10px;
-		padding: 10px 5px;
-	  }
-
-	  nav a {
-		font-size: 0.85em;
-	  }
-
-	  body {
-		padding: 0 10px;
-	  }
-
-	  iframe {
-		height: 400px;
-	  }
-
-	  .close-btn {
-		padding: 8px 12px;
-		font-size: 1em;
-	  }
-
-	  .details-row td {
-		font-size: 0.95em;
-	  }
-
-	  #project-table-wrapper {
-		overflow-x: auto;
-	  }
-	  
-	  #project-table {
-		font-size: 0.9em;
-	  }
-	}
-	
-	#project-table td.year-column, #project-table th.year-column {
-	  white-space: nowrap;
-	  text-align: center;
-	  min-width: 60px;
-	}
-
-
   </style>
 </head>
 
 <body>
 
+  <!-- Navigation -->
   <nav>
     <a href="#profile">Profile</a>
     <a href="#projects">Projects</a>
@@ -274,42 +285,31 @@
 
   <h1>Seonggyun Kim</h1>
 
+  <!-- Profile Section -->
   <section id="profile">
     <h2>Profile</h2>
-    <div id="profile-content">
-      <!-- profile.html will be loaded here -->
-    </div>
-
+    <div id="profile-content"></div>
     <div id="cv-viewer" style="margin-top: 30px;"></div>
   </section>
 
+  <!-- Projects Section -->
   <section id="projects">
     <h2>Projects</h2>
-    <div id="projects-content">
-      <!-- projects.html will be loaded here -->
-    </div>
-
+    <div id="projects-content"></div>
     <div id="project-viewer" style="margin-top: 30px;"></div>
   </section>
 
+  <!-- Side Projects Section -->
   <section id="side-projects">
     <h2>Side Projects</h2>
     <ul>
       <li>Jazz</li>
-      <li>Linux rice (i use arch btw)</li>
+      <li>Linux rice (I use Arch btw)</li>
       <li>Art</li>
     </ul>
-
-    <!-- Optional embedded SoundCloud track -->
-    <!--
-    <iframe width="100%" height="166" scrolling="no" frameborder="no"
-      allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/kimseonggyun/ten-more-nights&color=%230066cc&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-      style="margin-top: 20px;">
-    </iframe>
-    -->
   </section>
 
+  <!-- Social Links Section -->
   <section id="social">
     <h2>Social</h2>
     <ul>
@@ -323,13 +323,13 @@
     &copy; 2025 Seonggyun Kim
   </footer>
 
+  <!-- JavaScript -->
   <script>
     let projectsLoaded = false;
     let expandedRow = null;
     let currentSort = { column: -1, ascending: true };
 
     window.addEventListener("DOMContentLoaded", function() {
-      // Fetch Profile
       fetch('profile.html')
         .then(response => response.text())
         .then(data => {
@@ -339,7 +339,6 @@
           console.error('Error loading profile:', error);
         });
 
-      // Fetch Projects
       fetch('projects.html')
         .then(response => response.text())
         .then(data => {
@@ -348,7 +347,7 @@
         })
         .catch(error => {
           document.getElementById('projects-content').innerHTML = "<p>Failed to load project files.</p>";
-          console.error('Error loading project files:', error);
+          console.error('Error loading projects:', error);
         });
     });
 
@@ -362,15 +361,13 @@
     }
 
     function closeViewer(target) {
-      const viewer = document.getElementById(target);
-      viewer.innerHTML = "";
+      document.getElementById(target).innerHTML = "";
     }
 
     function sortTable(columnIndex) {
       const table = document.getElementById("project-table");
       const tbody = table.tBodies[0];
       const rows = Array.from(tbody.rows);
-
       const isNumber = columnIndex === 1;
 
       if (currentSort.column === columnIndex) {
@@ -383,13 +380,9 @@
       const sortedRows = rows.sort((a, b) => {
         const aText = a.cells[columnIndex].innerText.trim();
         const bText = b.cells[columnIndex].innerText.trim();
-        let comparison;
-        if (isNumber) {
-          comparison = parseInt(aText) - parseInt(bText);
-        } else {
-          comparison = aText.localeCompare(bText);
-        }
-        return currentSort.ascending ? comparison : -comparison;
+        return currentSort.ascending
+          ? (isNumber ? parseInt(aText) - parseInt(bText) : aText.localeCompare(bText))
+          : (isNumber ? parseInt(bText) - parseInt(aText) : bText.localeCompare(aText));
       });
 
       tbody.innerHTML = "";
@@ -398,20 +391,25 @@
 
     function toggleDetails(row, pdfPath, fullTitle, institution, description) {
       const tbody = row.parentElement;
+      const toggleIcon = row.querySelector(".toggle-icon");
 
       if (expandedRow && expandedRow !== row) {
         if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
-          tbody.removeChild(expandedRow.nextSibling);
-          const oldArrow = expandedRow.querySelector(".arrow");
-          if (oldArrow) oldArrow.classList.remove("rotated");
+          expandedRow.nextSibling.style.maxHeight = "0";
+          setTimeout(() => {
+            if (expandedRow.nextSibling) tbody.removeChild(expandedRow.nextSibling);
+          }, 200);
+          const oldToggle = expandedRow.querySelector(".toggle-icon");
+          if (oldToggle) oldToggle.textContent = "+";
         }
       }
 
-      const arrow = row.querySelector(".arrow");
-
       if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains('details-row')) {
-        tbody.removeChild(row.nextSibling);
-        if (arrow) arrow.classList.remove("rotated");
+        row.nextSibling.style.maxHeight = "0";
+        setTimeout(() => {
+          if (row.nextSibling) tbody.removeChild(row.nextSibling);
+        }, 200);
+        if (toggleIcon) toggleIcon.textContent = "+";
         expandedRow = null;
         return;
       }
@@ -419,16 +417,23 @@
       const detailsRow = document.createElement('tr');
       detailsRow.classList.add('details-row');
       detailsRow.innerHTML = `
-        <td colspan="2" style="padding: 15px; background: rgba(0,0,0,0.03); border-top: none;">
-          <strong>Title:</strong> ${fullTitle}<br>
-          <strong>Institution:</strong> ${institution}<br>
-          <strong>Description:</strong> ${description}<br><br>
-          <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
+        <td colspan="2">
+          <div class="details-content">
+            <strong>Title:</strong> ${fullTitle}<br>
+            <strong>Institution:</strong> ${institution}<br>
+            <strong>Description:</strong> ${description}<br><br>
+            <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
+          </div>
         </td>
       `;
       tbody.insertBefore(detailsRow, row.nextSibling);
 
-      if (arrow) arrow.classList.add("rotated");
+      requestAnimationFrame(() => {
+        const contentDiv = detailsRow.querySelector('.details-content');
+        if (contentDiv) contentDiv.style.maxHeight = "500px";
+      });
+
+      if (toggleIcon) toggleIcon.textContent = "-";
       expandedRow = row;
     }
   </script>
