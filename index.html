@@ -147,6 +147,65 @@
         border-bottom: 1px solid #555;
       }
     }
+	
+	#project-table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  margin-top: 20px;
+	}
+
+	#project-table th, #project-table td {
+	  text-align: left;
+	  padding: 8px 12px;
+	  border-bottom: 1px solid #ccc;
+	}
+
+	#project-table th {
+	  background-color: #f2f2f2;
+	  cursor: pointer;
+	}
+
+	#project-table td {
+	  word-break: break-word;
+	}
+
+	.clickable-project {
+	  cursor: pointer;
+	}
+
+	.clickable-project:hover {
+	  color: var(--link-color);
+	  text-decoration: underline;
+	}
+
+	.arrow {
+	  display: inline-block;
+	  width: 1em;
+	  text-align: center;
+	  margin-right: 5px;
+	  transition: transform 0.2s ease;
+	}
+
+	.rotated {
+	  transform: rotate(90deg);
+	}
+
+	.details-row td {
+	  background-color: #f9f9f9;
+	}
+
+	@media (prefers-color-scheme: dark) {
+	  #project-table th {
+		background-color: #222;
+	  }
+	  #project-table td, #project-table th {
+		border-bottom: 1px solid #555;
+	  }
+	  .details-row td {
+		background-color: #222;
+	  }
+	}
+
   </style>
 </head>
 
