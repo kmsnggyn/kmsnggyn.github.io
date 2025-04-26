@@ -155,36 +155,37 @@
         border-bottom: 1px solid #555;
       }
     }
-	
-	.details-row td {
-	  background-color: #f9f9f9;
-	}
+    
+    .details-row td {
+      background-color: #f9f9f9;
+    }
 
-	@media (prefers-color-scheme: dark) {
-	  .details-row td {
-		background-color: #222;
-	  }
-	}
-	.arrow {
-	  display: inline-block;
-	  width: 1em;
-	  text-align: center;
-	  margin-right: 5px;
-	  transition: transform 0.2s ease;
-	}
-	.rotated {
-	  transform: rotate(90deg);
-	}
-	
-	.clickable-project {
-	  cursor: pointer;
-	}
+    @media (prefers-color-scheme: dark) {
+      .details-row td {
+        background-color: #222;
+      }
+    }
 
-	.clickable-project:hover {
-	  color: var(--link-color);
-	  text-decoration: underline;
-	}
+    .arrow {
+      display: inline-block;
+      width: 1em;
+      text-align: center;
+      margin-right: 5px;
+      transition: transform 0.2s ease;
+    }
+    
+    .rotated {
+      transform: rotate(90deg);
+    }
 
+    .clickable-project {
+      cursor: pointer;
+    }
+
+    .clickable-project:hover {
+      color: var(--link-color);
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -202,13 +203,11 @@
   <section id="profile">
     <h2>Profile</h2>
     <p>Hello, I'm Seonggyun Kim, a master's student in Chemical Engineering for Energy and Environment at KTH, Stockholm. I am passionate about sustainable technologies, decarbonization, and integrating chemical engineering principles with environmental innovation.</p>
-    <p><a href="cv.pdf" target="_blank">Download my CV</a> or <a href="#" onclick="viewPDF('cv-seonggyun-kim.pdf', 'cv-viewer'); return false;">View CV here</a>.</p>
+    <p><a href="cv.pdf" target="_blank">Download my CV</a> or <a href="#" onclick="viewPDF('cv.pdf', 'cv-viewer'); return false;">View CV here</a>.</p>
 
     <!-- CV-specific viewer -->
     <div id="cv-viewer" style="margin-top: 30px;"></div>
   </section>
-
-
 
   <section id="projects">
     <h2>Projects</h2>
@@ -219,22 +218,23 @@
     <!-- Project-specific viewer -->
     <div id="project-viewer" style="margin-top: 30px;"></div>
   </section>
-  
-  
+
   <section id="side-projects">
     <h2>Side Projects</h2>
     <ul>
       <li>Jazz</li>
       <li>Rice</li>
       <li>Art</li>
-      <li></li>
     </ul>
-<!--    <iframe width="100%" height="166" scrolling="no" frameborder="no"
+
+    <!-- Optional SoundCloud embedded player -->
+    <!--
+    <iframe width="100%" height="166" scrolling="no" frameborder="no"
       allow="autoplay"
       src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/kimseonggyun/ten-more-nights&color=%230066cc&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
       style="margin-top: 20px;">
     </iframe>
--->
+    -->
   </section>
 
   <section id="social">
@@ -252,6 +252,7 @@
 
   <script>
     let projectsLoaded = false;
+    let expandedRow = null;
 
     window.addEventListener("DOMContentLoaded", function() {
       const projectsContent = document.getElementById("projects-content");
@@ -268,14 +269,12 @@
         });
     });
 
-    let currentSort = { column: -1, ascending: true };
-
     function sortTable(columnIndex) {
       const table = document.getElementById("project-table");
       const tbody = table.tBodies[0];
       const rows = Array.from(tbody.rows);
 
-      const isNumber = columnIndex === 1; // Only Year is numeric
+      const isNumber = columnIndex === 1;
 
       if (currentSort.column === columnIndex) {
         currentSort.ascending = !currentSort.ascending;
@@ -300,57 +299,49 @@
       sortedRows.forEach(row => tbody.appendChild(row));
     }
 
+    let currentSort = { column: -1, ascending: true };
+
     function viewPDF(filePath, target) {
       const viewer = document.getElementById(target);
-      viewer.innerHTML = `
-        <iframe src="${filePath}"></iframe>
-      `;
+      viewer.innerHTML = `<iframe src="${filePath}"></iframe>`;
       viewer.scrollIntoView({ behavior: "smooth" });
     }
-	
 
-	let expandedRow = null;
+    function toggleDetails(row, pdfPath, fullTitle, institution, description) {
+      const tbody = row.parentElement;
 
-	function toggleDetails(row, pdfPath, fullTitle, institution, description) {
-	  const tbody = row.parentElement;
+      if (expandedRow && expandedRow !== row) {
+        if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
+          tbody.removeChild(expandedRow.nextSibling);
+          const oldArrow = expandedRow.querySelector(".arrow");
+          if (oldArrow) oldArrow.classList.remove("rotated");
+        }
+      }
 
-	  // Close previous expanded row
-	  if (expandedRow && expandedRow !== row) {
-		if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
-		  tbody.removeChild(expandedRow.nextSibling);
-		  const oldArrow = expandedRow.querySelector(".arrow");
-		  if (oldArrow) oldArrow.classList.remove("rotated");
-		}
-	  }
+      const arrow = row.querySelector(".arrow");
 
-	  const arrow = row.querySelector(".arrow");
+      if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains('details-row')) {
+        tbody.removeChild(row.nextSibling);
+        if (arrow) arrow.classList.remove("rotated");
+        expandedRow = null;
+        return;
+      }
 
-	  // If clicking the same row again
-	  if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains('details-row')) {
-		tbody.removeChild(row.nextSibling);
-		if (arrow) arrow.classList.remove("rotated");
-		expandedRow = null;
-		return;
-	  }
+      const detailsRow = document.createElement('tr');
+      detailsRow.classList.add('details-row');
+      detailsRow.innerHTML = `
+        <td colspan="2" style="padding: 15px; background: rgba(0,0,0,0.03); border-top: none;">
+          <strong>Title:</strong> ${fullTitle}<br>
+          <strong>Institution:</strong> ${institution}<br>
+          <strong>Description:</strong> ${description}<br><br>
+          <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
+        </td>
+      `;
+      tbody.insertBefore(detailsRow, row.nextSibling);
 
-	  // Otherwise expand
-	  const detailsRow = document.createElement('tr');
-	  detailsRow.classList.add('details-row');
-	  detailsRow.innerHTML = `
-		<td colspan="2" style="padding: 15px; background: rgba(0,0,0,0.03); border-top: none;">
-		  <strong>Title:</strong> ${fullTitle}<br>
-		  <strong>Institution:</strong> ${institution}<br>
-		  <strong>Description:</strong> ${description}<br><br>
-		  <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
-		</td>
-	  `;
-	  tbody.insertBefore(detailsRow, row.nextSibling);
-
-	  if (arrow) arrow.classList.add("rotated");
-	  expandedRow = row;
-	}
-
-
+      if (arrow) arrow.classList.add("rotated");
+      expandedRow = row;
+    }
   </script>
 
 </body>
