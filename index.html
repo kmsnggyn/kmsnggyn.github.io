@@ -80,20 +80,47 @@
     ul { padding-left: 20px; margin-top: 10px; }
     li { margin-bottom: 8px; }
 
-    /* PDF viewer */
-    #project-viewer {
-      margin-top: 20px; /* table → close btn gap */
-    }
+     /* ─────────────────────────────────────────────────────────────────────────────
+       1) Viewer containers: full-width and consistent gap
+       ───────────────────────────────────────────────────────────────────────────── */
+    #project-viewer,
     #cv-viewer {
-      margin-top: 20px; /* profile → close btn gap */
+      width: 100%;          /* span the full content width */
+      margin-top: 30px;     /* restore the original spacing */
     }
 
-    /* 3. Pull the iframe closer to its close button */
+    /* Close button: block-level left-aligned, with a bit of bottom margin */
+    #project-viewer .close-btn,
+    #cv-viewer .close-btn {
+      display: block;
+      margin: 0 0 10px 0;   /* 10px gap below the button */
+    }
+
+    /* Iframe: always 100% width, fixed 600px height (desktop) */
     #project-viewer iframe,
     #cv-viewer iframe {
-      margin-top: 10px;
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ccc;
     }
-    
+
+    /* Remove any mobile override that shrank your iframe—delete or comment out:
+       @media (max-width:600px){ iframe { height:400px; } }
+    */
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       2) Toggle icon: equal width for “+” and “–”
+       ───────────────────────────────────────────────────────────────────────────── */
+    .toggle-icon {
+      display: inline-block;
+      width: 1em;            /* fixed width equal to one “M” character */
+      text-align: center;    /* center the “+” or “–” in that space */
+      font-size: inherit;    /* same size as surrounding text */
+      vertical-align: middle;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
     .close-btn {
       background: var(--link);
       color: #fff;
