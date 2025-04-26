@@ -7,7 +7,6 @@
 
   <style>
     :root {
-      /* Light mode base colors */
       --background-color: #ffffff;
       --text-color: #333333;
       --link-color: #0066cc;
@@ -15,9 +14,8 @@
       --footer-color: #777777;
     }
 
-	@media (prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
       :root {
-        /* Dark mode base colors */
         --background-color: #121212;
         --text-color: #dddddd;
         --link-color: #66aaff;
@@ -25,65 +23,46 @@
         --footer-color: #555555;
       }
     }
-	
-	body {
-	  font-family: "Inter", sans-serif;
-	  max-width: 700px;
-	  margin: 60px auto;
-	  padding: 0 20px;
-	  line-height: 1.6;
-	  color: var(--text-color);
-	  background-color: var(--background-color);
-	  font-weight: 400;
-	}
 
-	h1 {
-	  text-align: center;
-	  margin-bottom: 40px;
-	  font-size: 1.8em;
-	  font-weight: 600;
-	}
-
-	h2 {
-	  text-align: center;
-	  font-weight: 400;
-	  color: var(--footer-color);
-	  margin-bottom: 40px;
-	}
-
-	.section-title {
-	  cursor: pointer;
-	  font-weight: 600;
-	  margin: 20px 0;
-	}
-
-	.section-title:hover {
-	  color: var(--link-color);
-	}
-	
-	.content {
-	  display: none;
-	  margin-left: 20px;
-	  margin-top: 10px;
-	}
-
-    ul {
-      list-style: none;
-      padding: 0;
+    body {
+      font-family: "Inter", sans-serif;
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      font-weight: 400;
     }
 
-    li {
-      margin-bottom: 10px;
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 1.8em;
+      font-weight: 600;
     }
 
-    a {
-      text-decoration: none;
+    h2 {
+      text-align: center;
+      font-weight: 400;
+      color: var(--footer-color);
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      cursor: pointer;
+      font-weight: 600;
+      margin: 20px 0;
+    }
+
+    .section-title:hover {
       color: var(--link-color);
     }
 
-    a:hover {
-      text-decoration: underline;
-      color: var(--hover-link-color);
+    .content {
+      display: none;
+      margin-left: 20px;
+      margin-top: 10px;
     }
 
     table {
@@ -100,17 +79,34 @@
 
     th {
       background-color: #f2f2f2;
+      cursor: pointer;
     }
-	
-	footer {
-	  margin-top: 60px;
-	  text-align: center;
-	  font-size: 0.9em;
-	  color: var(--footer-color);
-	  font-weight: 400;
-	  letter-spacing: 0.5px;
-	}
 
+    a {
+      text-decoration: none;
+      color: var(--link-color);
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: var(--hover-link-color);
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.9em;
+      color: var(--footer-color);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    iframe {
+      margin-top: 30px;
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ccc;
+    }
 
     @media (prefers-color-scheme: dark) {
       th {
@@ -121,7 +117,6 @@
       }
     }
   </style>
-
 </head>
 
 <body>
@@ -148,28 +143,62 @@
   <script>
     let projectsLoaded = false;
 
-	function toggle(id) {
-	  const element = document.getElementById(id);
-	  
-	  if (element.style.display === "none" || element.style.display === "") {
-		element.style.display = "block";
+    function toggle(id) {
+      const element = document.getElementById(id);
+      if (element.style.display === "none" || element.style.display === "") {
+        element.style.display = "block";
 
-		if (id === 'projects' && !projectsLoaded) {
-		  fetch('project-files.html')
-			.then(response => response.text())
-			.then(data => {
-			  element.innerHTML = data;
-			  projectsLoaded = true;
-			})
-			.catch(error => {
-			  element.innerHTML = "<p>Failed to load project files.</p>";
-			  console.error('Error loading project files:', error);
-			});
+        if (id === 'projects' && !projectsLoaded) {
+          fetch('project-files.html')
+            .then(response => response.text())
+            .then(data => {
+              element.innerHTML = data;
+              projectsLoaded = true;
+            })
+            .catch(error => {
+              element.innerHTML = "<p>Failed to load project files.</p>";
+              console.error('Error loading project files:', error);
+            });
+        }
+      } else {
+        element.style.display = "none";
+      }
+    }
+
+    let currentSort = { column: -1, ascending: true };
+
+	function sortTable(columnIndex) {
+	  const table = document.getElementById("project-table");
+	  const tbody = table.tBodies[0];
+	  const rows = Array.from(tbody.rows);
+
+	  const isNumber = columnIndex === 1; // Only Year is numeric
+
+	  // Check if we are clicking the same column
+	  if (currentSort.column === columnIndex) {
+		currentSort.ascending = !currentSort.ascending; // Toggle order
+	  } else {
+		currentSort.column = columnIndex;
+		currentSort.ascending = true; // Default ascending on new column
+	  }
+
+	  const sortedRows = rows.sort((a, b) => {
+		const aText = a.cells[columnIndex].innerText.trim();
+		const bText = b.cells[columnIndex].innerText.trim();
+
+		let comparison;
+		if (isNumber) {
+		  comparison = parseInt(aText) - parseInt(bText);
+		} else {
+		  comparison = aText.localeCompare(bText);
 		}
 
-	  } else {
-		element.style.display = "none";
-	  }
+		return currentSort.ascending ? comparison : -comparison;
+	  });
+
+	  // Clear and re-add sorted rows
+	  tbody.innerHTML = "";
+	  sortedRows.forEach(row => tbody.appendChild(row));
 	}
 
   </script>
