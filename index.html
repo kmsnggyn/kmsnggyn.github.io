@@ -389,35 +389,40 @@
       sortedRows.forEach(row => tbody.appendChild(row));
     }
 
+  let expandedRow = null;
+  let expandedContentDiv = null;
+
   function toggleDetails(row, pdfPath, fullTitle, institution, description) {
     const tbody = row.parentElement;
     const toggleIcon = row.querySelector(".toggle-icon");
 
-    if (expandedRow && expandedRow !== row) {
-      if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
-        expandedRow.nextSibling.style.maxHeight = "0";
+    const closePrevious = () => {
+      if (expandedRow && expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
+        expandedContentDiv.style.maxHeight = "0";
+
+        // Remove previous expanded row after animation
         setTimeout(() => {
           if (expandedRow.nextSibling) {
             tbody.removeChild(expandedRow.nextSibling);
           }
-        }, 200);
-        const previousToggleIcon = expandedRow.querySelector(".toggle-icon");
-        if (previousToggleIcon) previousToggleIcon.textContent = "+";
+          if (expandedRow.querySelector(".toggle-icon")) {
+            expandedRow.querySelector(".toggle-icon").textContent = "+";
+          }
+        }, 300); // Match animation duration
       }
-    }
+    };
 
-    if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains('details-row')) {
-      row.nextSibling.style.maxHeight = "0";
-      setTimeout(() => {
-        if (row.nextSibling) {
-          tbody.removeChild(row.nextSibling);
-        }
-      }, 200);
-      if (toggleIcon) toggleIcon.textContent = "+";
+    // If clicking the already open row → close it
+    if (expandedRow === row) {
+      closePrevious();
       expandedRow = null;
+      expandedContentDiv = null;
       return;
     }
 
+    closePrevious();
+
+    // Create new expanded row
     const detailsRow = document.createElement('tr');
     detailsRow.classList.add('details-row');
     detailsRow.innerHTML = `
@@ -433,16 +438,20 @@
     `;
     tbody.insertBefore(detailsRow, row.nextSibling);
 
+    const newContentDiv = detailsRow.querySelector('.details-content');
+
+    // Animate opening
     requestAnimationFrame(() => {
-      const contentDiv = detailsRow.querySelector('.details-content');
-      if (contentDiv) {
-        contentDiv.style.maxHeight = "500px";
-      }
+      newContentDiv.style.maxHeight = "500px";
     });
 
+    // Change + to -
     if (toggleIcon) toggleIcon.textContent = "-";
+
     expandedRow = row;
+    expandedContentDiv = newContentDiv;
   }
+
 
   </script>
 
