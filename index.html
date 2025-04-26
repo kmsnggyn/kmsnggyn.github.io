@@ -130,12 +130,11 @@
        Profile
        ───────────────────────────────────────────────────────────────────────────── */
 
-    .profile-timeline strong {
-      /* keep your existing color */
-      color: var(--link);
-
-      /* add this for monospaced digits */
+    .year {
+      /* use tabular numerals so all digits occupy the same width */
       font-variant-numeric: tabular-nums;
+      /* (fallback for older WebKit/Blink) */
+      font-feature-settings: "tnum";
     }
 
     /* ─────────────────────────────────────────────────────────────────────────────
