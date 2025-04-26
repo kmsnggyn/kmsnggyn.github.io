@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Standard favicon -->
+  <!-- Favicon and icons -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-  <!-- PNG icons for different resolutions -->
   <link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-
-  <!-- Apple devices -->
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
   <meta charset="UTF-8">
@@ -36,10 +32,14 @@
       }
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: "Inter", sans-serif;
-      max-width: 700px;
-      margin: 60px auto;
+      max-width: 800px;
+      margin: 80px auto 60px;
       padding: 0 20px;
       line-height: 1.6;
       color: var(--text-color);
@@ -47,34 +47,49 @@
       font-weight: 400;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 1.8em;
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--background-color);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 10px;
+      border-bottom: 1px solid #ccc;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
       font-weight: 600;
+      font-size: 0.95em;
     }
 
-    h2 {
-      text-align: center;
-      font-weight: 400;
-      color: var(--footer-color);
-      margin-bottom: 40px;
-    }
-
-    .section-title {
-      cursor: pointer;
-      font-weight: 600;
-      margin: 20px 0;
-    }
-
-    .section-title:hover {
+    nav a:hover {
       color: var(--link-color);
     }
 
-    .content {
-      display: none;
-      margin-left: 20px;
-      margin-top: 10px;
+    section {
+      margin-top: 60px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      font-size: 1.4em;
+      color: var(--link-color);
     }
 
     table {
@@ -104,20 +119,20 @@
       color: var(--hover-link-color);
     }
 
-    footer {
-      margin-top: 60px;
-      text-align: center;
-      font-size: 0.9em;
-      color: var(--footer-color);
-      font-weight: 400;
-      letter-spacing: 0.5px;
-    }
-
     iframe {
       margin-top: 30px;
       width: 100%;
       height: 600px;
       border: 1px solid #ccc;
+    }
+
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      font-size: 0.9em;
+      color: var(--footer-color);
+      font-weight: 400;
+      letter-spacing: 0.5px;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -127,32 +142,53 @@
       td, th {
         border-bottom: 1px solid #555;
       }
+      nav {
+        border-bottom: 1px solid #555;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <nav>
+    <a href="#profile">Profile</a>
+    <a href="#projects">Projects</a>
+    <a href="#side-projects">Side Projects</a>
+    <a href="#social">Social</a>
+  </nav>
+
   <h1>Seonggyun Kim</h1>
 
-  <h2>If you're reading this, I mean welcome, but this page is as you can see pretty much under construction rn.</h2>
+  <section id="profile">
+    <h2>Profile</h2>
+    <p>Hello, I'm Seonggyun Kim, a master's student in Chemical Engineering for Energy and Environment at KTH, Stockholm. I am passionate about sustainable technologies, decarbonization, and integrating chemical engineering principles with environmental innovation.</p>
+    <p><a href="cv.pdf" target="_blank">Download my CV</a> or <a href="#" onclick="viewPDF('cv-seonggyun-kim.pdf'); return false;">View CV here</a>.</p>
+  </section>
 
-  <div class="section-title" onclick="toggle('cv')">&gt; View my CV</div>
-  <div id="cv" class="content">
-    <ul>
-      <li><a href="cv.pdf" target="_blank">Download my CV</a></li>
-      <li><a href="#" onclick="viewPDF('cv.pdf'); return false;">View CV here</a></li>
-    </ul>
-  </div>
-
-
-  <div class="section-title" onclick="toggle('projects')">&gt; Project files</div>
-  <div id="projects" class="content">
-    <!-- Project files will be loaded dynamically -->
-  </div>
-  
-	<!-- PDF viewer will load here -->
   <div id="pdf-viewer" style="margin-top: 30px;"></div>
-  
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div id="projects-content">
+      <!-- Project table will be loaded here dynamically -->
+    </div>
+  </section>
+
+  <section id="side-projects">
+    <h2>Side Projects</h2>
+    <p>Coming soon: music projects, hobby simulations, art experiments, and more.</p>
+  </section>
+
+  <section id="social">
+    <h2>Social</h2>
+    <p>
+      <a href="https://github.com/kmsnggyn" target="_blank">GitHub</a> |
+      <a href="https://linkedin.com/in/seonggyun.kim" target="_blank">LinkedIn</a> |
+      <a href="mailto:seonggyun.kim@outlook.com">Email</a>
+    </p>
+  </section>
+
   <footer>
     &copy; 2025 Seonggyun Kim
   </footer>
@@ -160,35 +196,20 @@
   <script>
     let projectsLoaded = false;
 
-	function toggle(id) {
-	  const sections = ["cv", "projects"];
+    window.addEventListener("DOMContentLoaded", function() {
+      const projectsContent = document.getElementById("projects-content");
 
-	  sections.forEach(sectionId => {
-		const element = document.getElementById(sectionId);
-		if (sectionId === id) {
-		  // Open the one you clicked
-		  element.style.display = (element.style.display === "block") ? "none" : "block";
-
-		  // If it's the projects section, and not yet loaded
-		  if (id === 'projects' && !projectsLoaded && element.style.display === "block") {
-			fetch('project-files.html')
-			  .then(response => response.text())
-			  .then(data => {
-				element.innerHTML = data;
-				projectsLoaded = true;
-			  })
-			  .catch(error => {
-				element.innerHTML = "<p>Failed to load project files.</p>";
-				console.error('Error loading project files:', error);
-			  });
-		  }
-		} else {
-		  // Close the others
-		  element.style.display = "none";
-		}
-	  });
-	}
-
+      fetch('project-files.html')
+        .then(response => response.text())
+        .then(data => {
+          projectsContent.innerHTML = data;
+          projectsLoaded = true;
+        })
+        .catch(error => {
+          projectsContent.innerHTML = "<p>Failed to load project files.</p>";
+          console.error('Error loading project files:', error);
+        });
+    });
 
     let currentSort = { column: -1, ascending: true };
 
@@ -199,25 +220,22 @@
 
       const isNumber = columnIndex === 1; // Only Year is numeric
 
-      // Check if we are clicking the same column
       if (currentSort.column === columnIndex) {
-        currentSort.ascending = !currentSort.ascending; // Toggle order
+        currentSort.ascending = !currentSort.ascending;
       } else {
         currentSort.column = columnIndex;
-        currentSort.ascending = true; // Default ascending on new column
+        currentSort.ascending = true;
       }
 
       const sortedRows = rows.sort((a, b) => {
         const aText = a.cells[columnIndex].innerText.trim();
         const bText = b.cells[columnIndex].innerText.trim();
-
         let comparison;
         if (isNumber) {
           comparison = parseInt(aText) - parseInt(bText);
         } else {
           comparison = aText.localeCompare(bText);
         }
-
         return currentSort.ascending ? comparison : -comparison;
       });
 
@@ -233,5 +251,6 @@
       viewer.scrollIntoView({ behavior: "smooth" });
     }
   </script>
+
 </body>
 </html>
