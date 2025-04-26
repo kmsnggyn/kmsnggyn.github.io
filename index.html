@@ -155,6 +155,17 @@
         border-bottom: 1px solid #555;
       }
     }
+	
+	.details-row td {
+	  background-color: #f9f9f9;
+	}
+
+	@media (prefers-color-scheme: dark) {
+	  .details-row td {
+		background-color: #222;
+	  }
+	}
+
   </style>
 </head>
 
@@ -226,7 +237,7 @@
     window.addEventListener("DOMContentLoaded", function() {
       const projectsContent = document.getElementById("projects-content");
 
-      fetch('project-files.html')
+      fetch('projects.html')
         .then(response => response.text())
         .then(data => {
           projectsContent.innerHTML = data;
@@ -277,6 +288,43 @@
       `;
       viewer.scrollIntoView({ behavior: "smooth" });
     }
+	
+	
+	let expandedRow = null;
+
+	function toggleDetails(row, pdfPath, fullTitle, institution, description) {
+	  const tbody = row.parentElement;
+	  
+	  // Close previously expanded row
+	  if (expandedRow && expandedRow !== row) {
+		if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains('details-row')) {
+		  tbody.removeChild(expandedRow.nextSibling);
+		}
+	  }
+
+	  // If clicking the same row again
+	  if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains('details-row')) {
+		tbody.removeChild(row.nextSibling);
+		expandedRow = null;
+		return;
+	  }
+
+	  // Otherwise, expand
+	  const detailsRow = document.createElement('tr');
+	  detailsRow.classList.add('details-row');
+	  detailsRow.innerHTML = `
+		<td colspan="2" style="padding: 15px; background: rgba(0,0,0,0.03); border-top: none;">
+		  <strong>Title:</strong> ${fullTitle}<br>
+		  <strong>Institution:</strong> ${institution}<br>
+		  <strong>Description:</strong> ${description}<br><br>
+		  <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
+		</td>
+	  `;
+	  tbody.insertBefore(detailsRow, row.nextSibling);
+
+	  expandedRow = row;
+	}
+
   </script>
 
 </body>
