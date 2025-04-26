@@ -140,6 +140,7 @@
   <div id="cv" class="content">
     <ul>
       <li><a href="cv.pdf" target="_blank">Download my CV</a></li>
+      <li><a href="#" onclick="viewPDF('cv.pdf'); return false;">View CV here</a></li>
     </ul>
   </div>
 
@@ -147,6 +148,9 @@
   <div id="projects" class="content">
     <!-- Project files will be loaded dynamically -->
   </div>
+
+  <!-- PDF viewer will load here -->
+  <div id="pdf-viewer" style="margin-top: 30px;"></div>
 
   <footer>
     &copy; 2025 Seonggyun Kim
@@ -179,40 +183,46 @@
 
     let currentSort = { column: -1, ascending: true };
 
-	function sortTable(columnIndex) {
-	  const table = document.getElementById("project-table");
-	  const tbody = table.tBodies[0];
-	  const rows = Array.from(tbody.rows);
+    function sortTable(columnIndex) {
+      const table = document.getElementById("project-table");
+      const tbody = table.tBodies[0];
+      const rows = Array.from(tbody.rows);
 
-	  const isNumber = columnIndex === 1; // Only Year is numeric
+      const isNumber = columnIndex === 1; // Only Year is numeric
 
-	  // Check if we are clicking the same column
-	  if (currentSort.column === columnIndex) {
-		currentSort.ascending = !currentSort.ascending; // Toggle order
-	  } else {
-		currentSort.column = columnIndex;
-		currentSort.ascending = true; // Default ascending on new column
-	  }
+      // Check if we are clicking the same column
+      if (currentSort.column === columnIndex) {
+        currentSort.ascending = !currentSort.ascending; // Toggle order
+      } else {
+        currentSort.column = columnIndex;
+        currentSort.ascending = true; // Default ascending on new column
+      }
 
-	  const sortedRows = rows.sort((a, b) => {
-		const aText = a.cells[columnIndex].innerText.trim();
-		const bText = b.cells[columnIndex].innerText.trim();
+      const sortedRows = rows.sort((a, b) => {
+        const aText = a.cells[columnIndex].innerText.trim();
+        const bText = b.cells[columnIndex].innerText.trim();
 
-		let comparison;
-		if (isNumber) {
-		  comparison = parseInt(aText) - parseInt(bText);
-		} else {
-		  comparison = aText.localeCompare(bText);
-		}
+        let comparison;
+        if (isNumber) {
+          comparison = parseInt(aText) - parseInt(bText);
+        } else {
+          comparison = aText.localeCompare(bText);
+        }
 
-		return currentSort.ascending ? comparison : -comparison;
-	  });
+        return currentSort.ascending ? comparison : -comparison;
+      });
 
-	  // Clear and re-add sorted rows
-	  tbody.innerHTML = "";
-	  sortedRows.forEach(row => tbody.appendChild(row));
-	}
+      tbody.innerHTML = "";
+      sortedRows.forEach(row => tbody.appendChild(row));
+    }
 
+    function viewPDF(filePath) {
+      const viewer = document.getElementById('pdf-viewer');
+      viewer.innerHTML = `
+        <iframe src="${filePath}"></iframe>
+      `;
+      viewer.scrollIntoView({ behavior: "smooth" });
+    }
   </script>
 </body>
 </html>
