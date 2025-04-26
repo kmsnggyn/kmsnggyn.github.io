@@ -3,75 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <title>Seonggyun Kim</title>
+  
   <style>
+    :root {
+      /* Light mode base colors */
+      --background-color: #ffffff;
+      --text-color: #333333;
+      --link-color: #0066cc;
+      --hover-link-color: #004999;
+      --footer-color: #777777;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        /* Dark mode base colors */
+        --background-color: #121212;
+        --text-color: #dddddd;
+        --link-color: #66aaff;
+        --hover-link-color: #99ccff;
+        --footer-color: #555555;
+      }
+    }
+
     body {
       font-family: sans-serif;
       max-width: 700px;
       margin: 60px auto;
       padding: 0 20px;
       line-height: 1.6;
-      color: #333;
-      background-color: #fff;
+      color: var(--text-color);
+      background-color: var(--background-color);
     }
+
     h1 {
       text-align: center;
       margin-bottom: 40px;
       font-size: 1.8em;
     }
+
+    h2 {
+      text-align: center;
+      font-weight: normal;
+      color: var(--footer-color);
+      margin-bottom: 40px;
+    }
+
     .section-title {
       cursor: pointer;
       font-weight: bold;
       margin: 20px 0;
     }
+
     .section-title:hover {
-      color: #0066cc;
+      color: var(--link-color);
     }
+
     .content {
       display: none;
       margin-left: 20px;
       margin-top: 10px;
     }
+
     ul {
       list-style: none;
       padding: 0;
     }
+
     li {
       margin-bottom: 10px;
     }
+
     a {
       text-decoration: none;
-      color: #0066cc;
+      color: var(--link-color);
     }
+
     a:hover {
       text-decoration: underline;
+      color: var(--hover-link-color);
     }
+
     footer {
       margin-top: 60px;
       text-align: center;
       font-size: 0.9em;
-      color: #777;
+      color: var(--footer-color);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #f2f2f2;
     }
 
     @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #ddd;
+      th {
+        background-color: #222;
       }
-      .section-title:hover {
-        color: #66aaff;
-      }
-      a {
-        color: #66aaff;
-      }
-      footer {
-        color: #555;
+      td, th {
+        border-bottom: 1px solid #555;
       }
     }
   </style>
+
 </head>
+
 <body>
   <h1>Seonggyun Kim</h1>
-	<h2>If you're reading this, I mean welcome, but this page is as you can see pretty much under construction rn.</h2>
+
+  <h2>If you're reading this, I mean welcome, but this page is as you can see pretty much under construction rn.</h2>
+
   <div class="section-title" onclick="toggle('cv')">&gt; View my CV</div>
   <div id="cv" class="content">
     <ul>
