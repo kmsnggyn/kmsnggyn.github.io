@@ -186,6 +186,22 @@
       color: var(--link-color);
       text-decoration: underline;
     }
+	
+	.close-btn {
+	  background-color: var(--link-color);
+	  color: white;
+	  border: none;
+	  padding: 6px 12px;
+	  font-size: 0.9em;
+	  cursor: pointer;
+	  border-radius: 4px;
+	}
+
+	.close-btn:hover {
+	  background-color: var(--hover-link-color);
+	}
+
+
   </style>
 </head>
 
@@ -301,11 +317,20 @@
 
     let currentSort = { column: -1, ascending: true };
 
-    function viewPDF(filePath, target) {
-      const viewer = document.getElementById(target);
-      viewer.innerHTML = `<iframe src="${filePath}"></iframe>`;
-      viewer.scrollIntoView({ behavior: "smooth" });
-    }
+	function viewPDF(filePath, target) {
+	  const viewer = document.getElementById(target);
+	  viewer.innerHTML = `
+		<button onclick="closeViewer('${target}')" class="close-btn">Close</button>
+		<iframe src="${filePath}"></iframe>
+	  `;
+	  viewer.scrollIntoView({ behavior: "smooth" });
+	}
+
+	function closeViewer(target) {
+	  const viewer = document.getElementById(target);
+	  viewer.innerHTML = "";
+	}
+
 
     function toggleDetails(row, pdfPath, fullTitle, institution, description) {
       const tbody = row.parentElement;
