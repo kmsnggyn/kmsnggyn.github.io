@@ -128,6 +128,26 @@
       color: var(--link);
       text-decoration: underline;
     }
+    
+    /* toggle icon */
+    .toggle-icon {
+      display: inline-block;
+      width: 1em;
+      text-align: center;
+      font-family: monospace;       /* ensure + and – occupy same width */
+      font-size: 1em;
+      font-weight: bold;
+      color: var(--text-color);
+      /* no transform here any more */
+    }
+
+    .details-content {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
 
     /* Details row */
     .details-row td {
@@ -211,8 +231,6 @@
   </footer>
 
   <script>
-    let expandedRow = null;
-
     // Fetch modular content
     window.addEventListener("DOMContentLoaded", () => {
       fetch("profile.html")
@@ -259,43 +277,73 @@
       rows.forEach(r => tbody.appendChild(r));
     }
 
-    // Expand/collapse details instantly
-    function toggleDetails(row, pdfPath, title, inst, desc) {
+    let expandedRow = null;
+
+    function toggleDetails(row, pdfPath, fullTitle, institution, description) {
       const tbody = row.parentElement;
-      // collapse previous
+      const icon  = row.querySelector(".toggle-icon");
+
+      // 1. If another row is open, close it
       if (expandedRow && expandedRow !== row) {
-        if (expandedRow.nextSibling && expandedRow.nextSibling.classList.contains("details-row")) {
-          tbody.removeChild(expandedRow.nextSibling);
-          expandedRow.querySelector(".toggle-icon").textContent = "+";
+        const prevContent = expandedRow.nextSibling?.querySelector(".details-content");
+        if (prevContent) {
+          prevContent.style.opacity    = "0";
+          prevContent.style.maxHeight  = "0";
+          setTimeout(() => {
+            tbody.removeChild(expandedRow.nextSibling);
+          }, 300);
         }
+        expandedRow.querySelector(".toggle-icon").textContent = "+";
       }
-      // toggle same
-      if (expandedRow === row) {
-        if (row.nextSibling && row.nextSibling.classList.contains("details-row")) {
+
+      // 2. If this same row is open, just close it
+      if (expandedRow === row && row.nextSibling?.classList.contains("details-row")) {
+        const content = row.nextSibling.querySelector(".details-content");
+        content.style.opacity   = "0";
+        content.style.maxHeight = "0";
+        setTimeout(() => {
           tbody.removeChild(row.nextSibling);
-          row.querySelector(".toggle-icon").textContent = "+";
-        }
+        }, 300);
+        icon.textContent = "+";
         expandedRow = null;
         return;
       }
-      // expand new
-      const detail = document.createElement("tr");
-      detail.className = "details-row";
-      detail.innerHTML = `
-        <td colspan="2" style="padding:15px; background:rgba(0,0,0,0.03);">
-          <div style="font-weight:600; margin-bottom:10px;">
-            ${title} | ${inst}
+
+      // 3. Otherwise, build and insert the details row
+      const detailsRow = document.createElement("tr");
+      detailsRow.classList.add("details-row");
+      detailsRow.innerHTML = `
+        <td colspan="2" style="padding:15px; background:rgba(0,0,0,0.03); border-top:none;">
+          <div class="details-content">
+            <div style="font-weight:600; margin-bottom:10px;">
+              ${fullTitle} | ${institution}
+            </div>
+            <ul style="padding-left:20px; margin:0 0 10px 0; line-height:1.5;">
+              ${description
+                .split("|")
+                .map(line => `<li>${line.trim()}</li>`)
+                .join("")}
+            </ul>
+            <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">
+              View PDF
+            </a>
           </div>
-          <ul style="padding-left:20px; margin:0 0 10px 0; line-height:1.5;">
-            ${desc.split("|").map(s => `<li>${s.trim()}</li>`).join("")}
-          </ul>
-          <a href="#" onclick="viewPDF('${pdfPath}','project-viewer');return false;">View PDF</a>
         </td>
       `;
-      tbody.insertBefore(detail, row.nextSibling);
-      row.querySelector(".toggle-icon").textContent = "-";
+      tbody.insertBefore(detailsRow, row.nextSibling);
+
+      // 4. Trigger the expand animation
+      requestAnimationFrame(() => {
+        const content = detailsRow.querySelector(".details-content");
+        content.style.maxHeight = "500px";
+        content.style.opacity   = "1";
+      });
+
+      // 5. Toggle the icon
+      icon.textContent = "-";
       expandedRow = row;
     }
+
   </script>
 </body>
 </html>
