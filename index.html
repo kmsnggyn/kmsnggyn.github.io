@@ -302,10 +302,13 @@
       const container = document.getElementById(targetId);
       container.innerHTML = `
         <button onclick="closeViewer('${targetId}')" class="close-btn">Close</button>
-        <iframe src="${path}"></iframe>
+        <iframe 
+          src="${path}#zoom=page-width"  <!-- CHANGED: add “#zoom=page-width” to force fit-to-width -->
+          ></iframe>
       `;
       container.scrollIntoView({ behavior: "smooth" });
     }
+    
     function closeViewer(targetId) {
       document.getElementById(targetId).innerHTML = "";
     }
