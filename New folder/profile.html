@@ -20,23 +20,10 @@
     .close-btn:hover {
       background-color: #004999;
     }
-  
-    .nav-link.active {
-      background-color: #e6f3ff;
-      font-weight: bold;
-      border-radius: 4px;
-      padding: 2px 6px;
-    }
-
   </style>
 </head>
 <body>
   <nav>
-    <a href="profile.html" class="nav-link">Profile</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="side-projects.html" class="nav-link">Side Projects</a>
-    <a href="social.html" class="nav-link">Social</a>
-  </nav>
     <a href="profile.html">Profile</a>
     <a href="projects.html">Projects</a>
     <a href="side-projects.html">Side Projects</a>
@@ -85,16 +72,5 @@
       document.getElementById(targetId).innerHTML = "";
     }
   </script>
-
-  <script>
-    const currentPath = window.location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".nav-link");
-    navLinks.forEach(link => {
-      if (link.getAttribute("href") === currentPath) {
-        link.classList.add("active");
-      }
-    });
-  </script>
-
 </body>
 </html>
