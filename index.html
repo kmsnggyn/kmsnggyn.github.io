@@ -4,7 +4,6 @@
   <!-- Basic metadata -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Seonggyun Kim</title>
 
   <!-- Favicons -->
@@ -224,36 +223,6 @@
       }
       .details-row td { background: #222; }
     }
-    /* ─────────────────────────────────────────────────────────────────────────────
-       PDF viewer containers (responsive tweaks)
-       ───────────────────────────────────────────────────────────────────────────── */
-    #project-viewer,
-    #cv-viewer {
-      /* unchanged: full width & spacing */
-      width:      100%;
-      margin-top: 30px;
-
-      /* ADDED: make this a positioned, aspect-ratio box */
-      position:   relative;      /* ← added */
-      padding-top: 75%;          /* ← added: sets box height to 75% of its width (adjust ratio as needed) */
-      overflow:   hidden;        /* ← added: hide overflow beyond the box */
-      /* removed any fixed height here */
-    }
-
-    /* was: height: 600px; → now entirely fluid */
-    #project-viewer iframe,
-    #cv-viewer iframe {
-      /* ADDED: fill the parent positioned box */
-      position: absolute;  /* ← added */
-      top:      0;         /* ← added */
-      left:     0;         /* ← added */
-
-      width:  100%;        /* ← unchanged */
-      height: 100%;        /* ← changed from fixed 600px */
-      border: 1px solid #ccc;
-    }
-
-    /* … the rest of your existing CSS below … */
   </style>
 </head>
 
