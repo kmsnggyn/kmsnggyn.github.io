@@ -96,9 +96,18 @@
        ───────────────────────────────────────────────────────────────────────────── */
     #project-viewer,
     #cv-viewer {
-      width:      100%;
-      margin-top: 30px;
+      width: 100%;         /* unchanged: full width of its parent */
+      margin-top: 30px;    /* unchanged: spacing above */
     }
+
+    #project-viewer iframe,
+    #cv-viewer iframe {
+      width:       100%;       /* → fill the container’s width */
+      max-width:   100%;       /* ← prevent it ever growing beyond its parent */
+      height:      auto;       /* → height scales to keep the PDF’s aspect ratio */
+      border:      1px solid #ccc; /* unchanged: border styling */
+    }
+    
     #project-viewer .close-btn,
     #cv-viewer .close-btn {
       display: block;
