@@ -1,24 +1,76 @@
-<p>Hello, I'm Seonggyun Kim, a master's student in Chemical Engineering for Energy and Environment at KTH, Stockholm.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile – Seonggyun Kim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .close-btn {
+      background-color: #0066cc;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .close-btn:hover {
+      background-color: #004999;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="profile.html">Profile</a>
+    <a href="projects.html">Projects</a>
+    <a href="side-projects.html">Side Projects</a>
+    <a href="social.html">Social</a>
+  </nav>
 
-<p>My academic focus is on sustainable technologies, process optimization, and integrating chemical engineering principles with environmental innovation. I am passionate about decarbonization and future energy systems, with experience in simulation, techno-economic analysis, and reactor modeling.</p>
+  <h2>Profile</h2>
+  <p>Hello, I'm Seonggyun Kim, a master's student in Chemical Engineering for Energy and Environment at KTH, Stockholm.</p>
+  <p>My academic focus is on sustainable technologies, process optimization, and integrating chemical engineering principles with environmental innovation. I am passionate about decarbonization and future energy systems, with experience in simulation, techno-economic analysis, and reactor modeling.</p>
 
-<h3>Experience</h3>
-<ul class="profile-timeline">
-  <li><span class="year">2023–2024:</span> Process Simulation Intern | Solver/Thermo Team, R&D AVEVA Process Simulation</li>
-  <li><span class="year">2012–2023:</span> Research Assistant | Fraunhofer UMSICHT</li>
-  <li><span class="year">2019–2021:</span> Military Service | Republic of Korea Air Force Band</li>
-</ul>
+  <h3>Experience</h3>
+  <ul class="profile-timeline">
+    <li><span class="year">2023–2024:</span> Process Simulation Intern | Solver/Thermo Team, R&D AVEVA Process Simulation</li>
+    <li><span class="year">2012–2023:</span> Research Assistant | Fraunhofer UMSICHT</li>
+    <li><span class="year">2019–2021:</span> Military Service | Republic of Korea Air Force Band</li>
+  </ul>
 
-<h3>Education</h3>
-<ul class="profile-timeline">
-  <li><span class="year">2023–2025:</span> KTH Royal Institute of Technology, Stockholm – MSc Chemical Engineering for Energy and Environment</li>
-  <li><span class="year">2017–2023:</span> Hanyang University, Seoul – BSc Chemical Engineering</li>
-  <li><span class="year">2013–2016:</span> Seoul Global High School</li>
-</ul>
+  <h3>Education</h3>
+  <ul class="profile-timeline">
+    <li><span class="year">2023–2025:</span> KTH Royal Institute of Technology, Stockholm – MSc Chemical Engineering for Energy and Environment</li>
+    <li><span class="year">2017–2023:</span> Hanyang University, Seoul – BSc Chemical Engineering</li>
+    <li><span class="year">2013–2016:</span> Seoul Global High School</li>
+  </ul>
 
-<p>You can download or view my full CV here:</p>
+  <p>You can download or view my full CV here:</p>
+  <ul>
+    <li><a href="cv-seonggyun-kim.pdf" target="_blank">Download CV</a></li>
+    <li><a href="#" onclick="viewPDF('cv-seonggyun-kim.pdf', 'cv-viewer'); return false;">View CV on this page</a></li>
+  </ul>
 
-<ul>
-  <li><a href="cv-seonggyun-kim.pdf" target="_blank">Download CV</a></li>
-  <li><a href="#" onclick="viewPDF('cv-seonggyun-kim.pdf', 'cv-viewer'); return false;">View CV on this page</a></li>
-</ul>
+  <div id="cv-viewer" style="width: 100%; margin-top: 10px;"></div>
+
+  <script>
+    function viewPDF(path, targetId) {
+      const container = document.getElementById(targetId);
+      container.innerHTML = `
+        <div style="margin-top: 10px; margin-bottom: 20px;">
+          <button onclick="closeViewer('${targetId}')" class="close-btn">Close</button>
+        </div>
+        <iframe src="${path}#zoom=page-width" style="width:100%; height:600px; border:1px solid #ccc;"></iframe>
+      `;
+      container.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function closeViewer(targetId) {
+      document.getElementById(targetId).innerHTML = "";
+    }
+  </script>
+</body>
+</html>
