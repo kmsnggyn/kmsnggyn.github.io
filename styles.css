@@ -32,7 +32,7 @@ nav {                           /* the bar itself (sticky) */
 }
 
 nav a {                         /* base link style */
-  color: var(--link-blue);
+  color: black;
   font-weight: 600;
   font-size: .95em;
   text-decoration: none;        /* no underline until hover/active */
@@ -85,8 +85,14 @@ nav a:hover {                   /* hover feedback */
   cursor: pointer;
   border-radius: 4px;
   margin-bottom: 10px;
+  transition: opacity 0.15s;
 }
-.close-btn:hover { background-color: var(--link-blue-dark); }
+.close-btn:hover {
+  opacity: 0.8;
+}
+.close-btn:active {
+  opacity: 0.5;
+}
 
 
 /* ===================================================================
@@ -181,17 +187,3 @@ nav a:hover {                   /* hover feedback */
 
 .profile-timeline li    { margin: .4rem 0; line-height: 1.4; }
 .profile-timeline .year { font-weight: 600; display: inline-block; width: 7.2rem; }
-
-/* Travelling underline ------------------------------------------------ */
-nav { position: fixed; /* already there, but must be relative for abs. child */ }
-
-.nav-underline {
-  position: absolute;
-  bottom: 0;                       /* sits on the nav’s bottom border */
-  height: 2px;
-  background: var(--link-blue);
-  width: 0;                        /* will be set by JS */
-  transform: translateX(0);
-  transition: transform .3s ease, width .3s ease;
-  pointer-events: none;            /* ignore clicks */
-}
