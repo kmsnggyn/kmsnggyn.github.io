@@ -3,39 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seonggyun Kim – Portfolio</title>
+  <title>Seonggyun Kim – Landing Page</title>
+
+  <!-- Inter font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Global styles -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Page‑specific (hero) styles -->
+  <style>
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .hero h1   { font-size: clamp(2.5rem, 6vw, 4rem); margin: 0 0 .5em; }
+    .hero p    { font-size: 1.1rem; max-width: 700px; margin: 0 0 1.5em; }
+    .cta-btn   { display: inline-block; padding: .75em 1.5em; border-radius: 8px;
+                 font-weight: 600; text-decoration: none; background: var(--link, #0066cc); color: #fff; }
+    .sections  { max-width: 960px; margin: 3rem auto; padding: 0 1rem; }
+    .sections h2 { font-size: 1.6rem; margin-bottom: .5em; }
+    .card-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); }
+    .card      { padding: 1.5rem; border: 1px solid #d0d0d0; border-radius: 10px; background: #fafafa; }
+    .card h3   { margin: 0 0 .5em; font-size: 1.2rem; }
+  </style>
 </head>
+
 <body>
+  <!-- Navbar injected by main.js -->
   <nav>
-    <a href="profile.html" class="nav-link">Profile</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="side-projects.html" class="nav-link">Side Projects</a>
-    <a href="social.html" class="nav-link">Social</a>
+    <a href="index.html"         class="nav-link">Home</a>
+    <a href="profile.html"       class="nav-link">Profile</a>
+    <a href="projects.html"      class="nav-link">Projects</a>
+    <a href="side-projects.html" class="nav-link">Side Projects</a>
+    <a href="social.html"        class="nav-link">Social</a>
+
+    <!-- NEW — travelling underline -->
+    <span class="nav-underline"></span>
   </nav>
-    <a href="profile.html">Profile</a>
-    <a href="projects.html">Projects</a>
-    <a href="side-projects.html">Side Projects</a>
-    <a href="social.html">Social</a>
-  </nav>
+  <!-- Hero / Intro -->
+  <header class="hero">
+    <h1>Seonggyun Kim</h1>
+    <p>Master’s student in Chemical Engineering for Energy &amp; Environment at KTH.<br>
+       Exploring sustainable processes, energy systems, and a touch of multi‑instrumental jazz.</p>
+    <a class="cta-btn" href="projects.html">View Projects</a>
+  </header>
 
-  <h1>Seonggyun Kim</h1>
-  <p>Welcome to my personal website. I’m a chemical engineer interested in sustainable process design, industry decarbonization, and simulation technologies.</p>
+  <!-- Quick links / highlights -->
+  <section class="sections">
+    <h2>Where to next?</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Projects</h3>
+        <p>Dive into academic and personal projects—process simulation, reactor modelling, and more.</p>
+        <a href="projects.html">Open&nbsp;Projects&nbsp;→</a>
+      </div>
 
-  <p>This site is a work in progress — I’m continuously updating it with new projects, ideas, and experiments.</p>
+      <div class="card">
+        <h3>Side‑Projects</h3>
+        <p>Small experiments and code snippets that didn’t fit the main portfolio.</p>
+        <a href="side-projects.html">See&nbsp;Side‑Projects&nbsp;→</a>
+      </div>
 
-  <p>Use the navigation above to explore my profile, view selected projects, and check out my side interests and contact links.</p>
+      <div class="card">
+        <h3>Profile / CV</h3>
+        <p>Academic background, work experience, and how to reach me.</p>
+        <a href="profile.html">Open&nbsp;Profile&nbsp;→</a>
+      </div>
 
-  <script>
-    const currentPath = window.location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".nav-link");
-    navLinks.forEach(link => {
-      if (link.getAttribute("href") === currentPath) {
-        link.classList.add("active");
-      }
-    });
-  </script>
+      <div class="card">
+        <h3>Social</h3>
+        <p>GitHub, LinkedIn, music performances, and occasional research notes.</p>
+        <a href="social.html">Follow&nbsp;Along&nbsp;→</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- Footer -->
+  <footer style="text-align:center; padding:2rem 0 1rem; font-size:.9rem;">
+    © 2025 Seonggyun Kim. All rights reserved.
+  </footer>
+
+  <!-- Shared JavaScript -->
+  <script src="main.js" defer></script>
 </body>
 </html>

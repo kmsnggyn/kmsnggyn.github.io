@@ -1,0 +1,197 @@
+/* ===================================================================
+   GLOBAL TYPOGRAPHY & LAYOUT
+   =================================================================== */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+  --link-blue: #0066cc;
+  --link-blue-dark: #004999;
+}
+
+.container {
+  max-width: 860px;            /* change here if you prefer 960 px */
+  margin: 80px auto 40px;      /* 80 px top gap leaves room for sticky nav */
+  padding: 0 1rem;
+}
+
+/* ===================================================================
+   NAVIGATION BAR
+   =================================================================== */
+nav {                           /* the bar itself (sticky) */
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px 10px;
+  background: var(--background, #fff);
+  border-bottom: 1px solid #ccc;
+}
+
+nav a {                         /* base link style */
+  color: var(--link-blue);
+  font-weight: 600;
+  font-size: .95em;
+  text-decoration: none;        /* no underline until hover/active */
+  cursor: pointer;
+  transition: color .15s ease;
+}
+
+nav a:hover {                   /* hover feedback */
+  color: var(--link-blue-dark);
+  text-decoration: underline;
+}
+
+.nav-link.active {              /* underline only the current page */
+  color: var(--link-blue-dark);
+  text-decoration: underline;
+}
+
+/* Mobile: stack links vertically */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+}
+
+/* ===================================================================
+   IN‑PAGE PDF VIEWERS  (#project-viewer, #cv-viewer)
+   =================================================================== */
+#project-viewer,
+#cv-viewer {
+  width: 100%;            /* same width as the .container */
+  margin-top: 30px;       /* space above the viewer */
+}
+
+#project-viewer iframe,
+#cv-viewer iframe {
+  width: 100%;            /* fill the viewer block */
+  height: 80vh;           /* tweak if you prefer a fixed px height */
+  border: 1px solid #ccc;
+}
+
+/* Close button (shared) */
+.close-btn {
+  background-color: var(--link-blue);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.close-btn:hover { background-color: var(--link-blue-dark); }
+
+
+/* ===================================================================
+   PROJECT TABLE & EXPANDABLE ROWS
+   =================================================================== */
+#project-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+#project-table th,
+#project-table td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+#project-table th {
+  background: #f2f2f2;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+#project-table .year-column {
+  width: 5.5rem;
+  text-align: right;
+}
+
+.clickable-project { cursor: pointer; }
+
+.toggle-icon {
+  font-family: monospace;
+  display: inline-block;
+  width: 3ch;
+  text-align: center;
+  transition: transform .2s ease;
+}
+
+.details-row td {
+  background: #f7f7f7;
+  padding: 1rem 1.2rem;
+  animation: fadeIn .25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Optional row highlight (e.g., on hover) */
+.highlight { background-color: #e6f3ff; }
+
+/* ===================================================================
+   CARD GRID (SIDE‑PROJECTS PAGE)
+   =================================================================== */
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+  padding: 1.4rem 1.6rem;
+  border: 1px solid #d4d4d4;
+  border-radius: 10px;
+  background: #fafafa;
+  transition: transform .15s ease;
+}
+
+.card:hover { transform: translateY(-4px); }
+
+.card h3 { margin: 0 0 .4rem; font-size: 1.15rem; }
+
+.card p  { margin: 0 0 .6rem; font-size: .95rem; line-height: 1.45; }
+
+.card a  { font-weight: 600; }
+
+/* Card grid links (index.html) */
+.card-link { text-decoration: none; color: inherit; }  /* kill default link styles */
+.card-link .card:hover { transform: translateY(-4px); }/* keep the lift‑on‑hover */
+
+
+/* ===================================================================
+   TIMELINE LIST (PROFILE PAGE)
+   =================================================================== */
+.profile-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.profile-timeline li    { margin: .4rem 0; line-height: 1.4; }
+.profile-timeline .year { font-weight: 600; display: inline-block; width: 7.2rem; }
+
+/* Travelling underline ------------------------------------------------ */
+nav { position: fixed; /* already there, but must be relative for abs. child */ }
+
+.nav-underline {
+  position: absolute;
+  bottom: 0;                       /* sits on the nav’s bottom border */
+  height: 2px;
+  background: var(--link-blue);
+  width: 0;                        /* will be set by JS */
+  transform: translateX(0);
+  transition: transform .3s ease, width .3s ease;
+  pointer-events: none;            /* ignore clicks */
+}

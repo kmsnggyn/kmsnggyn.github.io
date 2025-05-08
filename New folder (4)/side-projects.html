@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side Projects – Seonggyun Kim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .media-section iframe,
+    .media-section img {
+      max-width: 100%;
+      margin-top: 10px;
+      border-radius: 6px;
+    }
+    .media-section {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder">
+    <a href="profile.html">Profile</a>
+    <a href="projects.html">Projects</a>
+    <a href="side-projects.html">Side Projects</a>
+    <a href="social.html">Social</a>
+  </div>
+
+  <h2>Side Projects</h2>
+  <p>I like to explore my interests outside of academic and professional work. These side projects reflect my passion for creativity, customization, and design — ranging from music composition to Linux desktop theming.</p>
+
+  <h3>Jazz</h3>
+  <div class="media-section">
+    <p>Jazz is the essence of my existence: it has been a central part of my life for many years. I play tuba and double bass, bass guitar in a jazz orchestra and also compose small combo pieces in my free time. Here I share some highlights from my musical journey.</p>
+    <p>This is a small jazz ballad I composed in 2019:</p>
+
+    <!-- SoundCloud Embed -->
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/896876224&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+    </iframe>
+    <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kimseonggyun" title="kmsnggyn" target="_blank" style="color: #cccccc; text-decoration: none;">kmsnggyn</a> · <a href="https://soundcloud.com/kimseonggyun/ten-more-nights" title="Ten More Nights" target="_blank" style="color: #cccccc; text-decoration: none;">Ten More Nights</a></div>
+<!--
+    <p>This is me blasting the tuba at the 69th annual concert of <a href="https://www.pq.se/">Promenadorquestern och med baletten paletten</a>, the student jazz orchestra at KTH:</p>
+
+    <img src="images/pq-otukt-1.JPG" alt="PQ concert Tuba">
+  </div>
+-->
+  <h3>Arch Linux Ricing</h3>
+  <div class="media-section">
+    <p>As a hobby, I enjoy configuring and customizing Arch Linux. My rice setups prioritize aesthetics, keyboard-driven workflows, and performance. I’ve themed everything from the window manager to the notification system, using Hyprland, Waybar, swaync, and custom GTK styles.</p>
+
+    <!-- Screenshots -->
+    <img src="images/arch-rice-1.png" alt="Arch Linux riced desktop">
+    <img src="images/arch-rice-2.png" alt="Custom Waybar and terminal setup">
+
+    <p>You can explore my rice configuration files on GitHub:</p>
+    <a href="https://github.com/kmsnggyn/arch-rice" target="_blank">View Arch Rice Repository</a>
+  </div>
+
+<script>
+  const currentPath = window.location.pathname.split("/").pop();
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach(link => {
+    if (link.getAttribute("href") === currentPath) {
+      link.classList.add("active");
+    }
+  });
+</script>
+
+
+<script>
+  fetch("navbar.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("navbar-placeholder").innerHTML = data;
+      const currentPath = window.location.pathname.split("/").pop();
+      document.querySelectorAll(".nav-link").forEach(link => {
+        if (link.getAttribute("href") === currentPath) {
+          link.classList.add("active");
+        }
+      });
+    });
+</script>
+
+</body>
+</html>

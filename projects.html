@@ -1,81 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects – Seonggyun Kim</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    #project-viewer {
-      margin-top: 30px;
-    }
-    #project-viewer iframe {
-      width: 100%;
-      height: 600px;
-      border: 1px solid #ccc;
-    }
-    .close-btn {
-      background-color: #0066cc;
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      font-size: 0.9em;
-      cursor: pointer;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    .close-btn:hover {
-      background-color: #004999;
-    }
-    #project-table th {
-      background: #f2f2f2;
-    }
-    .toggle-icon {
-      font-family: monospace;
-      display: inline-block;
-      width: 1ch;
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-    .details-row {
-      animation: fadeIn 0.25s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .highlight {
-      background-color: #e6f3ff;
-    }
-  
-    .nav-link.active {
-      background-color: #e6f3ff;
-      font-weight: bold;
-      border-radius: 4px;
-      padding: 2px 6px;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects – Seonggyun Kim</title>
 
-  </style>
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Navbar placeholder (filled by main.js) -->
   <nav>
-    <a href="profile.html" class="nav-link">Profile</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="side-projects.html" class="nav-link">Side Projects</a>
-    <a href="social.html" class="nav-link">Social</a>
+    <a href="index.html"         class="nav-link">Home</a>
+    <a href="profile.html"       class="nav-link">Profile</a>
+    <a href="projects.html"      class="nav-link">Projects</a>
+    <a href="side-projects.html" class="nav-link">Side Projects</a>
+    <a href="social.html"        class="nav-link">Social</a>
+
+    <!-- NEW — travelling underline -->
+    <span class="nav-underline"></span>
   </nav>
-    <a href="profile.html">Profile</a>
-    <a href="projects.html">Projects</a>
-    <a href="side-projects.html">Side Projects</a>
-    <a href="social.html">Social</a>
-  </nav>
 
-  <h2>Projects</h2>
+  <main class="container">
+    <h2>Projects</h2>
 
-  <p>Below is a selection of academic and professional projects I’ve completed in the fields of chemical engineering, sustainability, simulation, and environmental technology. These works reflect both my university training and my internship contributions. I may organize these into categories (e.g. academic vs. internship) in the future.</p>
-
-  <div id="project-table-wrapper">
+    <!-- Project table -->
     <table id="project-table">
       <thead>
         <tr>
@@ -84,119 +36,108 @@
         </tr>
       </thead>
       <tbody>
-        <tr onclick="toggleDetails(this, 'projects/techno-economic-analysis-ccus-sweden.pdf', 'Techno-economic Analysis of CCUS in Sweden', 'KTH', 'A techno-economic study evaluating the deployment of carbon capture and storage in Sweden.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Techno-economic Analysis of CCUS in Sweden</td>
+        <!-- 2024 ---------------------------------------------------------->
+        <tr onclick="toggleDetails(this,
+          'projects/techno-economic-analysis-ccus-sweden.pdf',
+          'Techno‑economic Analysis of CCUS in Sweden',
+          'KTH',
+          'A techno‑economic study evaluating the deployment of carbon capture and storage in Sweden.')">
+          <td class="clickable-project"><span class="toggle-icon">+</span>Techno‑economic Analysis of CCUS in Sweden</td>
           <td class="year-column">2024</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/aps-competition-submission-seonggyun-kim.pdf', 'APS European Competition Submission', 'AVEVA', 'Process simulation project submitted to the APS academic competition | Focused on decarbonization and industrial optimization.')">
+
+        <tr onclick="toggleDetails(this,
+          'projects/aps-competition-submission-seonggyun-kim.pdf',
+          'APS European Competition Submission',
+          'AVEVA',
+          'Process simulation project submitted to the APS academic competition | Focused on decarbonisation and industrial optimisation.')">
           <td class="clickable-project"><span class="toggle-icon">+</span>APS European Competition Submission</td>
           <td class="year-column">2024</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/metal-recovery-supercritical-co2.pdf', 'Metal Recovery Using Supercritical CO₂', 'KTH', 'Study on supercritical CO₂ extraction methods | Application in sustainable metal recovery.')">
+
+        <tr onclick="toggleDetails(this,
+          'projects/metal-recovery-supercritical-co2.pdf',
+          'Metal Recovery Using Supercritical CO₂',
+          'KTH',
+          'Study on supercritical CO₂ extraction methods | Application in sustainable metal recovery.')">
           <td class="clickable-project"><span class="toggle-icon">+</span>Metal Recovery Using Supercritical CO₂</td>
           <td class="year-column">2024</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/nickel-rich-electrodes-li-ion-batteries.pdf', 'Nickel-rich Electrodes for Li-ion Batteries', 'KTH', 'Research on Ni-rich cathodes | Focused on high-performance Li-ion batteries.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Nickel-rich Electrodes for Li-ion Batteries</td>
+
+        <!-- 2023 ---------------------------------------------------------->
+        <tr onclick="toggleDetails(this,
+          'projects/nickel-rich-electrodes-li-ion-batteries.pdf',
+          'Nickel‑rich Electrodes for Li‑ion Batteries',
+          'KTH',
+          'Research on Ni‑rich cathodes | Focused on high‑performance Li‑ion batteries.')">
+          <td class="clickable-project"><span class="toggle-icon">+</span>Nickel‑rich Electrodes for Li‑ion Batteries</td>
           <td class="year-column">2023</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/pressurized-fluidized-bed-gasifier-risk-analysis.pdf', 'Pressurized Pilot-scale Fluidized Bed Gasifier', 'KTH', 'Risk assessment of pilot-scale gasifiers | Safety and operational analysis.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Pressurized Pilot-scale Fluidized Bed Gasifier</td>
+
+        <tr onclick="toggleDetails(this,
+          'projects/pressurized-fluidized-bed-gasifier-risk-analysis.pdf',
+          'Pressurised Pilot‑scale Fluidised Bed Gasifier: Risk Analysis',
+          'KTH',
+          'Risk assessment of pilot‑scale gasifiers | Safety and operational analysis.')">
+          <td class="clickable-project"><span class="toggle-icon">+</span>Pressurised Pilot‑scale Fluidised Bed Gasifier</td>
           <td class="year-column">2023</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/biomass-fired-chp-plant-with-fuel-drier.pdf', 'Biomass-fired Combined Heat and Power Plant', 'KTH', 'Analysis of biomass CHP systems | Integration of fuel drying for improved efficiency.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Biomass-fired Combined Heat and Power Plant</td>
+
+        <tr onclick="toggleDetails(this,
+          'projects/biomass-fired-chp-plant-with-fuel-drier.pdf',
+          'Biomass‑fired Combined Heat and Power Plant with Fuel Drier',
+          'KTH',
+          'Analysis of biomass CHP systems | Integration of fuel drying for improved efficiency.')">
+          <td class="clickable-project"><span class="toggle-icon">+</span>Biomass‑fired Combined Heat and Power Plant</td>
           <td class="year-column">2023</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/simulation-optimization-mdea-carbon-capture.pdf', 'Simulation and Optimization of MDEA-based Carbon Capture', 'Hanyang', 'Process simulation of MDEA solvent capture | Energy and cost optimization.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Simulation and Optimization of MDEA-based Carbon Capture</td>
+
+        <!-- 2022 ---------------------------------------------------------->
+        <tr onclick="toggleDetails(this,
+          'projects/simulation-optimization-mdea-carbon-capture.pdf',
+          'Simulation & Optimisation of MDEA‑based Carbon Capture',
+          'Hanyang',
+          'Process simulation of MDEA solvent capture | Energy and cost optimisation.')">
+          <td class="clickable-project"><span class="toggle-icon">+</span>Simulation & Optimisation of MDEA‑based Carbon Capture</td>
           <td class="year-column">2022</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/nrtl-parameter-optimization-alkane-sulfolane.pdf', 'NRTL Parameter Optimization for Alkane–Sulfolane Binary Mixtures', 'Hanyang', 'Parameter fitting for NRTL models | Better phase behavior prediction.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>NRTL Parameter Optimization for Alkane–Sulfolane Binary Mixtures</td>
+
+        <!-- 2021 ---------------------------------------------------------->
+        <tr onclick="toggleDetails(this,
+          'projects/nrtl-parameter-optimization-alkane-sulfolane.pdf',
+          'NRTL Parameter Optimisation for Alkane–Sulfolane Mixtures',
+          'Hanyang',
+          'Parameter fitting for NRTL models | Improved phase‑behaviour prediction.')">
+          <td class="clickable-project"><span class="toggle-icon">+</span>NRTL Parameter Optimisation for Alkane–Sulfolane Mixtures</td>
           <td class="year-column">2021</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/co2-compression-refrigeration-ccs-energy-penalty.pdf', 'Calculation for CO₂ Compression and Refrigeration for CCS', 'Hanyang', 'Energy analysis of CO₂ compression | Refrigeration cycles for CCS systems.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Calculation for CO₂ Compression and Refrigeration for CCS</td>
+
+        <tr onclick="toggleDetails(this,
+          'projects/co2-compression-refrigeration-ccs-energy-penalty.pdf',
+          'CO₂ Compression & Refrigeration for CCS',
+          'Hanyang',
+          'Energy analysis of CO₂ compression | Refrigeration cycles for CCS systems.')">
+          <td class="clickable-project"><span class="toggle-icon">+</span>CO₂ Compression & Refrigeration for CCS</td>
           <td class="year-column">2021</td>
         </tr>
-        <tr onclick="toggleDetails(this, 'projects/eigenfaces-kim-seonggyun.pdf', 'Eigenfaces (김성균)', 'Hanyang', 'PCA-based face recognition system | Implementation of the Eigenfaces algorithm.')">
+
+        <!-- 2020 ---------------------------------------------------------->
+        <tr onclick="toggleDetails(this,
+          'projects/eigenfaces-kim-seonggyun.pdf',
+          'Eigenfaces (김성균)',
+          'Hanyang',
+          'PCA‑based face recognition | Implementation of the Eigenfaces algorithm.')">
           <td class="clickable-project"><span class="toggle-icon">+</span>Eigenfaces</td>
           <td class="year-column">2020</td>
         </tr>
       </tbody>
     </table>
-  </div>
 
-  <div id="project-viewer"></div>
+    <!-- PDF viewer (filled by viewPDF in main.js) -->
+    <div id="project-viewer"></div>
+  </main>
 
-  <script>
-    let expandedRow = null;
-    function toggleDetails(row, pdfPath, fullTitle, institution, description) {
-      const tbody = row.parentElement;
-      const icon = row.querySelector(".toggle-icon");
-
-      if (expandedRow && expandedRow !== row) {
-        const next = expandedRow.nextSibling;
-        if (next && next.classList.contains("details-row")) {
-          tbody.removeChild(next);
-          expandedRow.querySelector(".toggle-icon").textContent = "+";
-          expandedRow.classList.remove("highlight");
-        }
-      }
-
-      if (expandedRow === row && row.nextSibling && row.nextSibling.classList.contains("details-row")) {
-        tbody.removeChild(row.nextSibling);
-        icon.textContent = "+";
-        row.classList.remove("highlight");
-        expandedRow = null;
-        return;
-      }
-
-      const tr = document.createElement("tr");
-      tr.classList.add("details-row");
-      tr.innerHTML = `
-        <td colspan="2">
-          <div style="font-weight:600; margin-bottom:10px;">
-            ${fullTitle} | ${institution}
-          </div>
-          <ul style="padding-left:20px; margin:0 0 10px; line-height:1.5;">
-            ${description.split("|").map(line => `<li>${line.trim()}</li>`).join("")}
-          </ul>
-          <a href="#" onclick="viewPDF('${pdfPath}', 'project-viewer'); return false;">View PDF</a>
-        </td>
-      `;
-      tbody.insertBefore(tr, row.nextSibling);
-      icon.textContent = "–";
-      row.classList.add("highlight");
-      expandedRow = row;
-    }
-
-    function viewPDF(path, targetId) {
-      const container = document.getElementById(targetId);
-      container.innerHTML = `
-        <div style="margin-top: 10px; margin-bottom: 20px;">
-          <button onclick="closeViewer('${targetId}')" class="close-btn">Close</button>
-        </div>
-        <iframe src="${path}#zoom=page-width"></iframe>
-      `;
-      container.scrollIntoView({ behavior: "smooth" });
-    }
-
-    function closeViewer(targetId) {
-      document.getElementById(targetId).innerHTML = "";
-    }
-  </script>
-
-  <script>
-    const currentPath = window.location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".nav-link");
-    navLinks.forEach(link => {
-      if (link.getAttribute("href") === currentPath) {
-        link.classList.add("active");
-      }
-    });
-  </script>
-
+  <!-- Shared JavaScript -->
+  <script src="main.js" defer></script>
 </body>
 </html>

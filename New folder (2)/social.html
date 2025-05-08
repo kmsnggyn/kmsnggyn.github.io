@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social – Seonggyun Kim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+
+
+  <h2>Social</h2>
+  <p>Here are the main platforms where you can find me online or get in touch:</p>
+
+  <ul>
+    <li><a href="https://www.linkedin.com/in/seonggyunkim" target="_blank">LinkedIn</a></li>
+    <li><a href="https://github.com/kmsnggyn" target="_blank">GitHub</a></li>
+    <li><a href="mailto:seonggyun.kim@outlook.com">Email</a></li>
+  </ul>
+
+  <script>
+    const currentPath = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll(".nav-link");
+    navLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active");
+      }
+    });
+  </script>
+  
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+        const currentPath = window.location.pathname.split("/").pop();
+        document.querySelectorAll(".nav-link").forEach(link => {
+          if (link.getAttribute("href") === currentPath) {
+            link.classList.add("active");
+          }
+        });
+      });
+  </script>
+  
+</body>
+</html>

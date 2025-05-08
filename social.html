@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Social – Seonggyun Kim</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social – Seonggyun Kim</title>
+
+  <!-- Inter font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Global styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Navbar placeholder (filled by main.js) -->
   <nav>
-    <a href="profile.html" class="nav-link">Profile</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="side-projects.html" class="nav-link">Side Projects</a>
-    <a href="social.html" class="nav-link">Social</a>
+    <a href="index.html"         class="nav-link">Home</a>
+    <a href="profile.html"       class="nav-link">Profile</a>
+    <a href="projects.html"      class="nav-link">Projects</a>
+    <a href="side-projects.html" class="nav-link">Side Projects</a>
+    <a href="social.html"        class="nav-link">Social</a>
+
+    <!-- NEW — travelling underline -->
+    <span class="nav-underline"></span>
   </nav>
-    <a href="profile.html">Profile</a>
-    <a href="projects.html">Projects</a>
-    <a href="side-projects.html">Side Projects</a>
-    <a href="social.html">Social</a>
-  </nav>
 
-  <h2>Social</h2>
-  <p>Here are the main platforms where you can find me online or get in touch:</p>
+  <main class="container">
+    <h2>Social</h2>
+    <ul style="list-style: none; padding: 0; margin: 0 0 2rem; font-size: 1.05rem;">
+      <li style="margin: .6rem 0;">
+        <a href="mailto:seonggyun.kiM@outlook.com">seonggyun.kiM@outlook.com</a>
+      </li>
+      <li style="margin: .6rem 0;">
+        <a href="https://github.com/sg-kim" target="_blank" rel="noopener">GitHub → sg‑kim</a>
+      </li>
+      <li style="margin: .6rem 0;">
+        <a href="https://www.linkedin.com/in/seonggyunkim" target="_blank" rel="noopener">LinkedIn → Seonggyun Kim</a>
+      </li>
+    </ul>
+  </main>
 
-  <ul>
-    <li><a href="https://www.linkedin.com/in/seonggyunkim" target="_blank">LinkedIn</a></li>
-    <li><a href="https://github.com/kmsnggyn" target="_blank">GitHub</a></li>
-    <li><a href="mailto:seonggyun.kim@outlook.com">Email</a></li>
-  </ul>
-
-  <script>
-    const currentPath = window.location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".nav-link");
-    navLinks.forEach(link => {
-      if (link.getAttribute("href") === currentPath) {
-        link.classList.add("active");
-      }
-    });
-  </script>
-
+  <!-- Shared JavaScript -->
+  <script src="main.js" defer></script>
 </body>
 </html>
