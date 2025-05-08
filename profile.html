@@ -15,7 +15,13 @@
   <style>
     .profile-timeline { list-style: none; padding: 0; margin: 0 0 2rem; }
     .profile-timeline li { margin: .4rem 0; line-height: 1.4; }
-    .profile-timeline .year { font-weight: 600; display: inline-block; width: 7.2rem; }
+    .profile-timeline .profile-year {
+      font-weight: 400;
+      font-variant-numeric: tabular-nums;
+      /* two fall-backs for older browsers / fonts that expose the feature differently */
+      font-feature-settings: "tnum";        /* Safari 9–10, some older fonts */
+      white-space: nowrap;                  /* keep “2021 – 2024” on one line */
+    }
   </style>
 </head>
 <body>
@@ -32,20 +38,26 @@
   <main style="max-width: 860px; margin: 80px auto 40px; padding: 0 1rem;">
     <h2>Profile</h2>
 
-    <p>Hello, I’m <strong>Seonggyun Kim</strong>, a master’s student in Chemical Engineering for Energy&nbsp;and&nbsp;Environment at KTH (Stockholm). My work centres on sustainable process design, energy‑system modelling and decarbonisation strategies.</p>
+    <p>Hello, I’m <strong>Seonggyun Kim</strong>, a master’s student in Chemical Engineering for Energy&nbsp;and&nbsp;Environment at KTH (Stockholm). My work centers on sustainable process design, energy‑system modelling and industry decarbonization.</p>
 
     <h3>Experience</h3>
     <ul class="profile-timeline">
-      <li><span class="year">2023 – 2024:</span> Process Simulation Intern | AVEVA Process Simulation, R&amp;D</li>
-      <li><span class="year">2012 – 2023:</span> Research Assistant | Fraunhofer UMSICHT</li>
-      <li><span class="year">2019 – 2021:</span> Military Service | Republic of Korea Air Force Band</li>
+      <li><span class="profile-year">2023 – 2024</span>
+        Process Simulation Intern | AVEVA Process Simulation, R&amp;D</li>
+      <li><span class="profile-year">2012 – 2023</span>
+        Research Assistant | Fraunhofer UMSICHT</li>
+      <li><span class="profile-year">2019 – 2023</span>
+        Military Service | Republic of Korea Air Force Band</li>
     </ul>
 
     <h3>Education</h3>
     <ul class="profile-timeline">
-      <li><span class="year">2023 – 2025:</span> KTH Royal Institute of Technology – MSc, Chemical Engineering for Energy &amp; Environment</li>
-      <li><span class="year">2017 – 2023:</span> Hanyang University – BSc, Chemical Engineering</li>
-      <li><span class="year">2013 – 2016:</span> Seoul Global High School</li>
+      <li><span class="profile-year">2023 – 2025</span>
+        KTH Royal Institute of Technology – MSc, Chemical Engineering for Energy &amp; Environment</li>
+      <li><span class="profile-year">2017 – 2023</span>
+        Hanyang University – BSc, Chemical Engineering</li>
+      <li><span class="profile-year">2013 – 2016</span>
+        Seoul Global High School</li>
     </ul>
 
     <h3>CV</h3>

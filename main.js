@@ -21,41 +21,72 @@ function viewPDF(path, targetId) {
   wrap.innerHTML = `
     <button class="close-btn" onclick="closeViewer('${targetId}')">Close</button>
     <iframe src="${path}#zoom=page-width"></iframe>`;
-  wrap.scrollIntoView({ behavior: "smooth" });
+  /* scroll only as far as needed so the whole expanded block stays in view */
+  wrap.scrollIntoView({
+    behavior: "smooth",
+    block:    "center",   // or "center"
+    inline:   "nearest"
+  });
 }
 function closeViewer(id) { document.getElementById(id).innerHTML = ""; }
 window.viewPDF = viewPDF;
 window.closeViewer = closeViewer;
 
-/* ---------- Expand / collapse rows ---------- */
-let expandedRow = null;
-function toggleDetails(row, pdf, title, inst, desc) {
-  const tbody = row.parentElement, icon = row.querySelector(".toggle-icon");
+/* ---------- Expand / collapse rows ---------- */let viewerSeq = 0;                         // new: unique IDs
+let expandedRow = null;                    // already present
 
-  // close any other open row
+function toggleDetails(row, inst, desc, link1Name, link1, link2Name, link2) {
+
+  /* ---------- close any open block ---------- */
   if (expandedRow && expandedRow !== row) {
-    expandedRow.nextElementSibling?.remove();
-    expandedRow.querySelector(".toggle-icon").textContent = "+";
+    expandedRow.nextElementSibling.remove();          // remove <tr class="details-row">
+    expandedRow.classList.remove('open');
+    expandedRow.querySelector('.toggle-icon').textContent = '+';
+  }
+  if (expandedRow === row) {                           // clicked the same row → collapse
+    row.nextElementSibling.remove();
+    row.classList.remove('open');
+    row.querySelector('.toggle-icon').textContent = '+';
+    expandedRow = null;
+    return;
   }
 
-  // collapse if clicking the same row
-  if (expandedRow === row && row.nextElementSibling?.classList.contains("details-row")) {
-    row.nextElementSibling.remove(); icon.textContent = "+"; expandedRow = null; return;
-  }
+  /* ---------- unique wrapper ID for this row ---------- */
+  const viewerId = `pdf-viewer-${++viewerSeq}`;
 
-  // otherwise expand this row
-  const details = document.createElement("tr");
-  details.className = "details-row";
+  /* ---------- optional links ---------- */
+  const linkPairs = [
+    [link1Name, link1],
+    [link2Name, link2],
+  ];
+  const linksHtml = linkPairs
+    .filter(([name, url]) => name && url)              // only complete pairs
+    .map(
+      ([name, url]) =>
+        `<a href="#" onclick="viewPDF('${url}','${viewerId}');return false;">${name}</a>`
+    )
+    .join(' ');
+
+  /* ---------- build + insert details row ---------- */
+  const details = document.createElement('tr');
+  details.className = 'details-row';
   details.innerHTML = `
+    <td></td>
     <td colspan="2">
-      <strong>${title}</strong> | ${inst}
-      <ul>${desc.split("|").map(t => `<li>${t.trim()}</li>`).join("")}</ul>
-      <a href="#" onclick="viewPDF('${pdf}','project-viewer');return false;">View PDF</a>
+      ${inst}
+      <ul>${desc.split('|').map(t => `<li>${t.trim()}</li>`).join('')}</ul>
+      ${linksHtml}
+      <div id="${viewerId}" class="pdf-wrap"></div>    <!-- viewer injected here -->
     </td>`;
-  tbody.insertBefore(details, row.nextSibling);
-  icon.textContent = "–";
+  row.parentElement.insertBefore(details, row.nextSibling);
+
+  /* ---------- mark row as open ---------- */
+  row.classList.add('open');
+  row.querySelector('.toggle-icon').textContent = '–';
   expandedRow = row;
 }
+
+
 window.toggleDetails = toggleDetails;
 
 /* ---------- Simple table sorter ---------- */

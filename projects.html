@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navbar placeholder (filled by main.js) -->
   <nav>
     <a href="index.html"         class="nav-link">Home</a>
     <a href="profile.html"       class="nav-link">Profile</a>
@@ -28,112 +27,156 @@
     <table id="project-table">
       <thead>
         <tr>
-          <th onclick="sortTable(0)">Project</th>
+          <th></th>
+          <th onclick="sortTable(0)">Title</th>
           <th class="year-column" onclick="sortTable(1)">Year</th>
         </tr>
       </thead>
       <tbody>
         <!-- 2024 ---------------------------------------------------------->
         <tr onclick="toggleDetails(this,
-          'projects/techno-economic-analysis-ccus-sweden.pdf',
-          'Techno‑economic Analysis of CCUS in Sweden',
-          'KTH',
-          'A techno‑economic study evaluating the deployment of carbon capture and storage in Sweden.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Techno‑economic Analysis of CCUS in Sweden</td>
-          <td class="year-column">2025</td>
-        </tr>
-
-        <tr onclick="toggleDetails(this,
-          'projects/introduction-to-ccus-kssea-2025.pdf',
-          'Introduction to CCUS',
-          'KSSEA',
-          'An introductory presentation on CCUS processes, with a focus on post-combustion carbon capture and importance of process simulation.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Introduction to CCUS</td>
+          // 'projects/techno-economic-analysis-ccus-sweden.pdf',
+          // 'Techno‑economic Analysis of CCUS in Sweden',
+          'KTH Royal Institute of Technology',
+          'A techno‑economic study evaluating the deployment of carbon capture and storage in Sweden.',
+          'Report',
+          'projects/techno-economic-analysis-ccus-sweden.pdf'
+          )">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Techno‑economic Analysis of CCUS in Sweden</td>
           <td class="year-column">2024</td>
         </tr>
 
         <tr onclick="toggleDetails(this,
+          // 'projects/introduction-to-ccus-kssea-2025.pdf',
+          // 'Introduction to CCUS',
+          'KSSEA (Korean-Scandinavian Scientists and Engineers Association)',
+          'An introductory presentation on CCUS processes, with a focus on post-combustion carbon capture and importance of process simulation.',
+          'Presentation',
+          'projects/introduction-to-ccus-kssea-2025.pdf')">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Introduction to CCUS</td>
+          <td class="year-column">2024</td>
+        </tr>
+
+        <tr onclick="toggleDetails(this,
+          // 'projects/aps-competition-submission-seonggyun-kim.pdf',
+          // 'Techno-economic analysis of ammonia production as a hydrogen carrier',
+          'APS Academic Competition – Europe',
+          'My entry to a three-month academic competition using &quot;AVEVA Process Simulation&quot;. | Built and optimized an ammonia production system with green hydrogen from solar farm. | Compared the ammonia route to a direct pipeline transport route and demonstrated economic feasibility of ammonia as a hydrogen carrier. | Won the first prize in Europe.',
+          'Entry to the competition',
           'projects/aps-competition-submission-seonggyun-kim.pdf',
-          'APS European Competition Submission',
-          'AVEVA',
-          'Process simulation project submitted to the APS academic competition | Focused on decarbonisation and industrial optimisation.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>APS European Competition Submission</td>
+          'Presentation',
+          'projects/aveva-competition-winners-presentation.pdf'
+          )">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Hydrogen Economy: Ammonia Synthesis Process Optimization</td>
           <td class="year-column">2024</td>
         </tr>
 
         <tr onclick="toggleDetails(this,
-          'projects/metal-recovery-supercritical-co2.pdf',
-          'Metal Recovery Using Supercritical CO₂',
-          'KTH',
-          'Study on supercritical CO₂ extraction methods | Application in sustainable metal recovery.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Metal Recovery Using Supercritical CO₂</td>
+          // 'projects/metal-recovery-supercritical-co2.pdf',
+          // 'Metal Recovery Using Supercritical CO₂',
+          'KTH Royal Institute of Technology',
+          'Study on supercritical CO₂ extraction methods | Application in sustainable metal recovery.',
+          'Report',
+          'projects/metal-recovery-supercritical-co2.pdf')">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Metal Recovery Using Supercritical CO₂</td>
           <td class="year-column">2024</td>
         </tr>
 
         <!-- 2023 ---------------------------------------------------------->
         <tr onclick="toggleDetails(this,
-          'projects/nickel-rich-electrodes-li-ion-batteries.pdf',
-          'Nickel‑rich Electrodes for Li‑ion Batteries',
-          'KTH',
-          'Research on Ni‑rich cathodes | Focused on high‑performance Li‑ion batteries.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Nickel‑rich Electrodes for Li‑ion Batteries</td>
+          // 'projects/nickel-rich-electrodes-li-ion-batteries.pdf',
+          // 'Nickel‑rich Electrodes for Li‑ion Batteries',
+          'KTH Royal Institute of Technology',
+          'Research on Ni‑rich cathodes | Focused on high‑performance Li‑ion batteries.',
+          'Report',
+          'projects/nickel-rich-electrodes-li-ion-batteries.pdf'
+          )">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Nickel‑rich Electrodes for Li‑ion Batteries</td>
           <td class="year-column">2023</td>
         </tr>
 
         <tr onclick="toggleDetails(this,
-          'projects/pressurized-fluidized-bed-gasifier-risk-analysis.pdf',
-          'Pressurised Pilot‑scale Fluidised Bed Gasifier: Risk Analysis',
-          'KTH',
-          'Risk assessment of pilot‑scale gasifiers | Safety and operational analysis.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Pressurised Pilot‑scale Fluidised Bed Gasifier</td>
+          // 'projects/pressurized-fluidized-bed-gasifier-risk-analysis.pdf',
+          // 'Pressurised Pilot‑scale Fluidised Bed Gasifier: Risk Analysis',
+          'KTH Royal Institute of Technology',
+          'Risk assessment of pilot‑scale gasifiers | Safety and operational analysis.',
+          'Report',
+          'projects/pressurized-fluidized-bed-gasifier-risk-analysis.pdf'
+          )">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Pressurised Pilot‑scale Fluidised Bed Gasifier</td>
           <td class="year-column">2023</td>
         </tr>
 
         <tr onclick="toggleDetails(this,
-          'projects/biomass-fired-chp-plant-with-fuel-drier.pdf',
-          'Biomass‑fired Combined Heat and Power Plant with Fuel Drier',
-          'KTH',
-          'Analysis of biomass CHP systems | Integration of fuel drying for improved efficiency.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Biomass‑fired Combined Heat and Power Plant</td>
+          // 'projects/biomass-fired-chp-plant-with-fuel-drier.pdf',
+          // 'Biomass‑fired Combined Heat and Power Plant with Fuel Drier',
+          'KTH Royal Institute of Technology',
+          'Analysis of biomass CHP systems | Integration of fuel drying for improved efficiency.',
+          'Report',
+          'projects/biomass-fired-chp-plant-with-fuel-drier.pdf'
+          )">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Biomass‑fired Combined Heat and Power Plant</td>
           <td class="year-column">2023</td>
         </tr>
 
         <!-- 2022 ---------------------------------------------------------->
         <tr onclick="toggleDetails(this,
-          'projects/simulation-optimization-mdea-carbon-capture.pdf',
-          'Simulation & Optimisation of MDEA‑based Carbon Capture',
-          'Hanyang',
-          'Process simulation of MDEA solvent capture | Energy and cost optimisation.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Simulation & Optimisation of MDEA‑based Carbon Capture</td>
+          // 'projects/simulation-optimization-mdea-carbon-capture.pdf',
+          // 'Simulation & Optimisation of MDEA‑based Carbon Capture',
+          'Bachelors Thesis | Hanyang University (Seoul)',
+          'Process simulation of MDEA solvent capture | Energy and cost optimisation.',
+          'Report',
+          'projects/simulation-optimization-mdea-carbon-capture.pdf'
+          )">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Simulation & Optimisation of MDEA‑based Carbon Capture</td>
           <td class="year-column">2022</td>
         </tr>
 
         <!-- 2021 ---------------------------------------------------------->
         <tr onclick="toggleDetails(this,
-          'projects/nrtl-parameter-optimization-alkane-sulfolane.pdf',
-          'NRTL Parameter Optimisation for Alkane–Sulfolane Mixtures',
-          'Hanyang',
-          'Parameter fitting for NRTL models | Improved phase‑behaviour prediction.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>NRTL Parameter Optimisation for Alkane–Sulfolane Mixtures</td>
+          // 'projects/nrtl-parameter-optimization-alkane-sulfolane.pdf',
+          // 'NRTL Parameter Optimisation for Alkane–Sulfolane Mixtures',
+          'Hanyang University (Seoul)',
+          'Parameter fitting for NRTL models | Improved phase‑behaviour prediction.',
+          'Report',
+          'projects/nrtl-parameter-optimization-alkane-sulfolane.pdf'
+          )">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">NRTL Parameter Optimisation for Alkane–Sulfolane Mixtures</td>
           <td class="year-column">2021</td>
         </tr>
 
         <tr onclick="toggleDetails(this,
-          'projects/co2-compression-refrigeration-ccs-energy-penalty.pdf',
-          'CO₂ Compression & Refrigeration for CCS',
-          'Hanyang',
-          'Energy analysis of CO₂ compression | Refrigeration cycles for CCS systems.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>CO₂ Compression & Refrigeration for CCS</td>
+          // 'projects/co2-compression-refrigeration-ccs-energy-penalty.pdf',
+          // 'CO₂ Compression & Refrigeration for CCS',
+          'Hanyang University (Seoul)',
+          'Energy analysis of CO₂ compression | Refrigeration cycles for CCS systems.',
+          'Report',
+          'projects/co2-compression-refrigeration-ccs-energy-penalty.pdf'
+          )">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">CO₂ Compression & Refrigeration for CCS</td>
           <td class="year-column">2021</td>
         </tr>
 
         <!-- 2020 ---------------------------------------------------------->
         <tr onclick="toggleDetails(this,
-          'projects/eigenfaces-kim-seonggyun.pdf',
-          'Eigenfaces (김성균)',
-          'Hanyang',
-          'PCA‑based face recognition | Implementation of the Eigenfaces algorithm.')">
-          <td class="clickable-project"><span class="toggle-icon">+</span>Eigenfaces</td>
+          // 'projects/eigenfaces-kim-seonggyun.pdf',
+          // 'Eigenfaces (김성균)',
+          'Hanyang University (Seoul)',
+          'PCA‑based face recognition | Implementation of the Eigenfaces algorithm.',
+          'Presentation',
+          'projects/eigenfaces-kim-seonggyun.pdf')">
+          <td class="expand-btn"><span class="toggle-icon">+</span></td>
+          <td class="clickable-project">Eigenfaces</td>
           <td class="year-column">2020</td>
         </tr>
       </tbody>
